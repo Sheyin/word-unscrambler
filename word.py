@@ -4,7 +4,7 @@ postfixes = ["ace", "ach", "ack", "act", "age", "aid", "aim", "ain", "air", "ame
             "ard", "are", "arg", "arn", "art", "ase", "ate", "ave",
             "can",
             "day",
-            "eld", "ene", "ent", "ere", "ery", "ese", "esh", "ess", "est",
+            "ean", "eld", "ene", "ent", "ere", "ery", "ese", "esh", "ess", "est",
             "fer",
             "ged", "ger", "gre", "gry",
             "hat", "hip", "hop",

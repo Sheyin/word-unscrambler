@@ -14,9 +14,12 @@ def unscramble(letters, subset, type, spaces):
         letters.remove(character)
 
     # Create combinations based on remaining letters and adding postfix
-    # This math only works for spaces = letters
+    # This math only works for spaces = letters - formula is out of date
     print("There are " + str(len(letters)) + " letters remaining, - " + str(math.factorial(len(letters))) + " - combinations possible.")
 
+    # if there is an s, and it is not part of the sunset, then temporarily remove
+    # it from the letter pool, reduce the total space by one, and readd it after the postfix.
+    # This should also be done in addition to keeping the s in the word pool, effectively doubling the process?
 
     result = itertools.permutations(letters)
     #print("numLettersToRemove: " + str(numLettersToRemove))
