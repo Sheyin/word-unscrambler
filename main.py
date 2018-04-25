@@ -7,9 +7,13 @@ from copy import copy
 print("Enter the letters given:")
 raw_letters = input()
 
-# TODO: Sanitize input
+print("How many letters is the blank?: ")
+num_spaces = int(input())
+#num_spaces = 5
 
-letters = list(raw_letters)
+# TODO: Sanitize inputs
+
+letters = list(raw_letters.lower())
 #print("Letters: " + str(letters) + " Number of letters entered: " + str(len(letters)))
 
 # Check if these letters are a subset of the list of letters, then display combinations
@@ -25,4 +29,6 @@ for combination in word.postfixes:
         # Need a second test to check for duplicate elements, which are not filtered by set functions
         if checkDuplicateLetters(copy(letters), combination):
             print(combination + " is a subset of " + raw_letters + ".")
-            unscramble(copy(letters), combination, "postfix")
+            unscramble(copy(letters), combination, "postfix", num_spaces)
+
+print("--- End ---")
