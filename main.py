@@ -1,6 +1,6 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English languageself.
 
-from functions import unscramble, checkDuplicateLetters, filterKnownLetters, matchLetterPosition, printIndented
+from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults
 import word
 from copy import copy
 
@@ -12,12 +12,12 @@ num_spaces = int(input())
 
 print("Are there any known spaces?: ")
 confirmKnownSpaces = input()
-knownSpaces = []
+knownLetters = []
 
 if ('y' in confirmKnownSpaces.lower()):
     for counter in range(0, num_spaces):
         print("What is in slot " + str(counter + 1) + "? Press space or enter if not known.")
-        knownSpaces.append(input().lower())
+        knownLetters.append(input().lower())
 
 solutions = []
 
@@ -31,16 +31,15 @@ for combination in word.postfixes:
         if checkDuplicateLetters(copy(letters), combination):
             solutions += unscramble(copy(letters), combination, "postfix", num_spaces, solutions)
 
-letterPairings = matchLetterPosition(knownSpaces)
+if ('y' in confirmKnownSpaces.lower()):
+    solutions = filterKnownLetters(solutions, knownLetters)
 
-filteredSolutions = filterKnownLetters(solutions, letterPairings)
-print("Current # of solutions: " + str(len(filteredSolutions)))
+print("Current # of solutions: " + str(len(solutions)))
 
 # TODO: Recheck filtering duplicate entries - appears to be showing up again
 # - Also, removing invalid letter placement isn't working reliably - case "sldoit" / 4 space / (i, 1), (o, 3)
 # - Perhaps removed items are being readded to the list, invalidating entire loop
 
-for _ in filteredSolutions:
-    printIndented(_)
+printResults(solutions)
 
-print("--- End ---")
+print("\n--- End ---")

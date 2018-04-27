@@ -2,6 +2,8 @@
 import math
 from copy import copy
 import itertools
+import re
+import textwrap
 
 # Letters: the pool of letters to choose from
 # Subset: a detected combination of letters to exclude from the pool and build combinations upon
@@ -57,34 +59,42 @@ def checkDuplicateLetters(letters, subset):
 
 
 # Keeps only the words that match a letter in the position of a known letter
-def filterKnownLetters(solutions, letterPairings):
+# TODO: Maybe remove words that don't include any vowels, etc (or y)
+def filterKnownLetters(solutions, knownLetters):
     filteredSolutions = []
-    # This needs to be rerun if more than 1 known letter, because some matches will include ones invalidated by other matches
-    for _ in range(0, len(letterPairings)):
-        for letter, position in letterPairings:
-            print("Debug: running checkValidCombo on letter: " + letter + " position: " + str(position))
-            filteredSolutions += checkValidCombo(solutions, letter, position)
+
+    expression = buildRegularExpression(knownLetters)
+    regex = re.compile(expression)
+
+    for word in solutions:
+        if re.match(regex, word):
+            filteredSolutions.append(word)
     return filteredSolutions
 
 
-def checkValidCombo(solutions, letter, position):
-    tempSolutions = []
-    for word in solutions:
-        if word[position] == letter:
-            tempSolutions.append(word)
-    return tempSolutions
+# Reformats the list of known letters to be a regular expression
+def buildRegularExpression(knownLetters):
+    expression = ""
+    for character in knownLetters:
+        if character in ['', ' ', '.', ';', ',']:
+            expression += '.'
+        else:
+            expression += character
+    return expression
 
 
-# Returns a list of tuples of a letter and position
-def matchLetterPosition(knownLetters):
-    positions = []
-    for position in range(0, len(knownLetters)):
-        if knownLetters[position] not in ['', ' ']:
-            positions.append((knownLetters[position], position))
-            #print("Added: " + str((knownLetters[position], position)))
-    return positions
+# Prints results, hopefully in columns, for easier reading.
+def printResults(solutions):
+    columnCounter = 1
+    for text in solutions:
+        if columnCounter % 4 == 0:
+            print("   " + text)
+        else:
+            print("   " + text, end='')
+        columnCounter += 1
+
 
 
 # Simply prints text indented a bit for easier reading.
-def printIndented(text):
-    print("   " + text)
+#def printIndented(text):
+#    print("\t" + text)

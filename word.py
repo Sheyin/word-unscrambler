@@ -15,8 +15,14 @@ postfixes = ["ace", "ach", "ack", "act", "age", "aid", "aim", "ain", "air", "ame
             "pen", "ple",
             "rge", "rin", "rve",
             "tch", "ten", "thin", "tic", "tin", "tion"
-            "al", "an", "ar", "at", "ea", "ed", "en", "er", "et", "id", "il", "in", "it", "ld", "ly",
-            "me", "ng", "og", "ol", "ot", "se", "st", "te", "un"]
+            "ag", "al", "an", "ar", "at", "ay",
+            "de",
+            "ea", "ed", "en", "er", "es", "et", "ey",
+            "id", "il", "im", "in", "it",
+            "ld", "le", "ll", "ly",
+            "me", "ng",
+            "oc", "og", "ol", "or", "ot",
+            "re", "rl", "ry", "se", "st", "te", "un", "ur", "us", "ye"]
 
 # There is a lot of overlap, especially with 2 and 3 letter postfixes
 # ex. -te and -ate
