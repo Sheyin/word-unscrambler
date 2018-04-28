@@ -11,13 +11,14 @@
 <p>
   <form action = "/search" method="get">
     <ul type= "disc">
-    <li>Letters to unscramble: <input type="text" name="letters">
+    <li>Letters to unscramble: <input type="text" name="letters" id="letters">
     <li>Length of the word to find: <input type="text" name="length" id="length">
-    <li>Are there any known letters?: <input type="radio" name="known" value="True" onchange="getKnownLetters(this)">Yes
-      <input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" checked>No
+    <li>Are there any known letters?: <input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='knownLetters'>Yes
+      <input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='unknownLetters' checked>No
       <input type="hidden" name="knownLetters" id="knownLettersBox" default="">
     </ul>
     <input type="submit" value="Submit" onclick="bundleKnownLetters()">
+    <button type="button" onclick="resetForm()">Clear Form</button>
   </form>
 
   <script type="text/javascript">
@@ -52,6 +53,17 @@
     }
 
   }
+  </script>
+
+  <script type="text/javascript">
+    function resetForm() {
+      document.getElementById('letters').value = '';
+      document.getElementById('length').value = '';
+      document.getElementById('unknownLetters').checked = true;
+      document.getElementById('knownLetters').checked = false;
+      document.getElementById('knownLetterEntry').innerHTML = '';
+      document.getElementById('knownLettersBox').value = '';
+    }
   </script>
 
   <div id="knownLetterEntry"></div>
