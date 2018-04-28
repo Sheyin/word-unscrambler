@@ -1,0 +1,39 @@
+body {
+    background-color: #353438;
+    color: #EFEBFF;
+}
+h1 {
+    color: #EFEBFF;
+}
+p {
+    color: #EFEBFF;
+}
+
+td.even {
+  color: #584F7F;
+}
+
+td.odd {
+  color: #8174BA;
+}
+
+td {
+  vertical-align: top;
+}
+
+table.solutions {
+  width = 30px;
+}
+
+table.solutionsWrapper {
+  border-spacing: 10px;
+}
+
+input #knownInput {
+  size: 25%;
+}
+
+div.knownLetterEntry {
+  text-indent: 20px;
+  color: #EFEBFF;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<title>Unscrambling letters</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+<h1> Unscrambling letters </h1>
+
+<p>
+  This is a tool to unscramble words given a pool of letters.  It is a work in progress.
+</p>
+
+<p>
+  <form action = "/search" method="get">
+    <ul type= "disc">
+    <li>Letters to unscramble: <input type="text" name="letters">
+    <li>Length of the word to find: <input type="text" name="length" id="length">
+    <li>Are there any known letters?: <input type="radio" name="known" value="True" onchange="getKnownLetters(this)">Yes
+      <input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" checked>No
+      <input type="hidden" name="knownLetters" id="knownLettersBox" default="">
+    </ul>
+    <input type="submit" value="Submit" onclick="bundleKnownLetters()">
+  </form>
+
+  <script type="text/javascript">
+  function getKnownLetters(knownNode){
+    var known = knownNode.value;
+    if (known == 'True') {
+      var letterBlanks = '';
+      for (i=0; i<document.getElementById('length').value; i++) {
+        idName = 'letter' + i;
+        letterBlanks += ' <input type="text" name=idName class="knownInput" maxlength="1" size="1" /> '
+      }
+      var formText = 'What letters are known?:' + letterBlanks + '<br>';
+      document.getElementById('knownLetterEntry').innerHTML=formText;
+    }
+    else {
+      document.getElementById('knownLetterEntry').innerHTML='';
+    }
+  }
+  </script>
+
+  <script type="text/javascript">
+  function bundleKnownLetters(){
+    var knownSpaces = document.getElementsByClassName('knownInput');
+    for (i=0; i<document.getElementById('length').value; i++) {
+      knownLetters = document.getElementById('knownLettersBox');
+      if (knownSpaces[i].value == '') {
+        knownLetters.value += '_';
+      }
+      else {
+        knownLetters.value += knownSpaces[i].value;
+      }
+    }
+
+  }
+  </script>
+
+  <div id="knownLetterEntry"></div>

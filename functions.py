@@ -8,20 +8,15 @@ import textwrap
 # Letters: the pool of letters to choose from
 # Subset: a detected combination of letters to exclude from the pool and build combinations upon
 def unscramble(letters, subset, type, spaces, solutions):
-    #remainingLetters = copy(letters)
     numLettersToRemove = len(letters) - spaces
     solution = []
     # Remove the first instance of each letter of subset from the pool
     for character in subset:
         letters.remove(character)
-    # if there is an s, and it is not part of the sunset, then temporarily remove
-    # it from the letter pool, reduce the total space by one, and readd it after the postfix.
-    # This should also be done in addition to keeping the s in the word pool, effectively doubling the process?
 
     # If there is only 1 s, and it is being used in the subset, then skip the plural
     # AND make sure it obeys the # of spaces requested
     if ('s' not in subset and letters.count('s') >= 1) or ('s' in subset and letters.count('s') >= 2):
-        #print("Plural Handling Start")
         pluralLetters = copy(letters)
         pluralLetters.remove('s')
         pluralResults = itertools.permutations(pluralLetters)
@@ -30,20 +25,18 @@ def unscramble(letters, subset, type, spaces, solutions):
             pluralCombination = ''.join(pluralPermutation) + subset
             pluralCombination = pluralCombination[numLettersToRemove:]
             pluralCombination += 's'
-            #print("Raw plural combination: " + pluralCombination)
+
             if pluralCombination not in solution and pluralCombination not in solutions:
                 solution.append(pluralCombination)
 
 
     results = itertools.permutations(letters)
-    # TODO: Add method for inputting known letter positions, if it invalidates a prefix, skip processing
 
     for permutation in results:
         combination = ''.join(permutation) + subset
         combination = combination[numLettersToRemove:]
         if combination not in solution:
             solution.append(combination)
-
     return solution
 
 
@@ -55,7 +48,6 @@ def checkDuplicateLetters(letters, subset):
             return False
     else:
         return True
-    # Any errors?
 
 
 # Keeps only the words that match a letter in the position of a known letter
@@ -76,7 +68,7 @@ def filterKnownLetters(solutions, knownLetters):
 def buildRegularExpression(knownLetters):
     expression = ""
     for character in knownLetters:
-        if character in ['', ' ', '.', ';', ',']:
+        if character in ['', ' ', '.', ';', ',', '_']:
             expression += '.'
         else:
             expression += character

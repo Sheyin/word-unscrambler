@@ -1,4 +1,4 @@
-# The goal is to create a list of word-patterns based on certain letter combinations in the English languageself.
+# The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
 from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults
 import word
@@ -37,8 +37,6 @@ if ('y' in confirmKnownSpaces.lower()):
 print("Current # of solutions: " + str(len(solutions)))
 
 # TODO: Recheck filtering duplicate entries - appears to be showing up again
-# - Also, removing invalid letter placement isn't working reliably - case "sldoit" / 4 space / (i, 1), (o, 3)
-# - Perhaps removed items are being readded to the list, invalidating entire loop
 
 printResults(solutions)
 
