@@ -1,26 +1,29 @@
 <!doctype html>
 <title>Results for {{ letters }}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-{% if solutions %}
-  <h1>{{numResults}} results found for {{ letters }}:</h1>
 
-  <div id="columnWrapper">
-    <table id="solutionsWrapper">
-      <tr>
-    {%- for column in solutions|slice(10) %}
-        <td>
-          <table id = "solutions">
-            {%- for word in column %}
-              <tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
-            {%- endfor %}
-          </table>
-        </td>
-    {%- endfor %}
-      </tr>
-    </table>
-  </div>
+<div id="mainContent">
+	{% if solutions %}
+		<h1>{{numResults}} results found for {{ letters }}:</h1>
+
+		<div id="columnWrapper">
+			<table id="solutionsWrapper">
+				<tr>
+				{%- for column in solutions|slice(10) %}
+					<td>
+						<table id = "solutions">
+							{%- for word in column %}
+								<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
+							{%- endfor %}
+						</table>
+					</td>
+				{%- endfor %}
+				</tr>
+			</table>
+		</div>
 
 
-{% else %}
-  <h1>No results found for {{ letters }}.</h1>
-{% endif %}
+		{% else %}
+		<h1>No results found for {{ letters }}.</h1>
+	{% endif %}
+</div>

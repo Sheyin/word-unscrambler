@@ -84,9 +84,3 @@ def printResults(solutions):
         else:
             print("   " + text, end='')
         columnCounter += 1
-
-
-
-# Simply prints text indented a bit for easier reading.
-#def printIndented(text):
-#    print("\t" + text)

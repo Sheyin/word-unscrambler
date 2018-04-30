@@ -21,3 +21,8 @@ Things to add:
 
 Bugs:
 - Work on filtering duplicates
+
+Usage:
+<b>python main.py</b> runs the console-only version
+
+The other method requires <a href="http://flask.pocoo.org/">installing Flask</a>, setting FLASK_APP to <b>flask_main.py</b>, then running flask.

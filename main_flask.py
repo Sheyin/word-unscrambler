@@ -7,11 +7,11 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def hello():
+def start():
     return render_template('index.html')
 
 @app.route('/search', methods=['GET'])
-def start():
+def search():
     raw_letters = request.args.get('letters', '')
     num_spaces = int(request.args.get('length', ''))
     known = bool(request.args.get('known', ''))
@@ -31,12 +31,6 @@ def start():
     if known:
         solutions = filterKnownLetters(solutions, knownLetters)
 
-    print("Current # of solutions: " + str(len(solutions)))
-
     # TODO: Recheck filtering duplicate entries - appears to be showing up again
-
-    printResults(solutions)
-
-    print("\n--- End ---")
 
     return render_template('results.html', numResults=len(solutions), letters=raw_letters, solutions=solutions)

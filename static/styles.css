@@ -1,24 +1,35 @@
+div.knownLetterEntry {
+  text-indent: 20px;
+  color: #EFEBFF;
+}
+
 body {
     background-color: #353438;
     color: #EFEBFF;
 }
+
+button.reset {
+  color: #e7e7e7;
+  padding-left: 50px;
+}
+
 h1 {
     color: #EFEBFF;
 }
+
+input.knownInput {
+  size: 25%;
+}
+
+#mainContent {
+	text-align: left;
+	width: 50%;
+	margin: auto;
+	boder: 3px dotted green;
+}
+
 p {
     color: #EFEBFF;
-}
-
-td.even {
-  color: #584F7F;
-}
-
-td.odd {
-  color: #8174BA;
-}
-
-td {
-  vertical-align: top;
 }
 
 table.solutions {
@@ -29,11 +40,14 @@ table.solutionsWrapper {
   border-spacing: 10px;
 }
 
-input #knownInput {
-  size: 25%;
+td.even {
+  color: #5F6F8F;
 }
 
-div.knownLetterEntry {
-  text-indent: 20px;
-  color: #EFEBFF;
+td.odd {
+  color: #8174BA;
+}
+
+td {
+  vertical-align: top;
 }
