@@ -29,7 +29,13 @@ postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame
 # The following is not used yet, but is something I am thinking on to improve on filtering junk.
 consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 vowels = ['a', 'e', 'i', 'o', 'u']
-specialConstantPairs = ['st', 'ch', 'chr', 'nt', 'gh', 'fr', 'pr', 'wh', 'pl', 'ly', 'ty', 'ry', 'rd', 'br', 'mp']
+vowelExceptions = ['chr', 'thr', 'thy', 'tyc', 'tyk', 'tyr']
+specialConsonantPairs = ['bl', 'br', 'ch', 'cl', 'cr', 'cy', 'dr', 'fl', 'fr', 'gh', 'gl', 'gr', 'hy', 'kn', 'll', 'my',
+						'ph', 'kn', 'ph', 'pl', 'pr', 'py', 'rh', 'ry', 'sc', 'sh', 'st', 'th', 'tr', 'wh', 'wr']
+
+# Some removed pairings that aren't really used for the start of words.
+# nt, ly, ty, rd, mp
 
 # Think about letter pairs that will never be matched -> regular expression
 # ex. mc, gp, dp, qc, etc. should be filtered in an expression
+# Somewhat common pairs - ll, oo, ee, mm, zz

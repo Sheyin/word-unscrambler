@@ -1,6 +1,6 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
-from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults
+from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults, removeResults
 import word
 from copy import copy
 
@@ -34,10 +34,18 @@ for combination in word.postfixes:
 if ('y' in confirmKnownSpaces.lower()):
     solutions = filterKnownLetters(solutions, knownLetters)
 
-print("Current # of solutions: " + str(len(solutions)))
+preFilteredSolutionsCount = len(solutions)
+
+# Making this >3 because of irregularities, such as "pry"
+if num_spaces > 3:
+	solutions, filteredSolutions = removeResults(solutions)
 
 # TODO: Recheck filtering duplicate entries - appears to be showing up again
 
+print("\nSolutions: (" + (str(len(solutions))) + " found)")
 printResults(solutions)
+print("\nUnlikely Solutions: (" + (str(len(filteredSolutions))) + " found)")
+printResults(filteredSolutions)
+print("\nCurrent # of solutions: " + str(len(solutions)) + " Unlikely: " + str(preFilteredSolutionsCount - len(solutions)))
 
 print("\n--- End ---")
