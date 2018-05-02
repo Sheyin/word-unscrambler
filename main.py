@@ -37,7 +37,7 @@ if ('y' in confirmKnownSpaces.lower()):
 preFilteredSolutionsCount = len(solutions)
 
 # Making this >3 because of irregularities, such as "pry"
-if num_spaces > 3:
+if num_spaces > 4:
 	solutions, filteredSolutions = removeResults(solutions)
 
 # TODO: Recheck filtering duplicate entries - appears to be showing up again

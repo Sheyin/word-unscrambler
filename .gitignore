@@ -6,6 +6,8 @@ secret.py
 /reference
 /.aws
 __pycache__
+Pipfile
+*.lock
 
 # Compiled source #
 ###################

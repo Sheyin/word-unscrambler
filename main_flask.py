@@ -33,7 +33,7 @@ def search():
 
 	# Making this >3 because of irregularities, such as "pry"
 	filteredSolutions = []
-	if num_spaces > 3:
+	if num_spaces > 4:
 		solutions, filteredSolutions = removeResults(solutions)
 	numFiltered = len(filteredSolutions)
 

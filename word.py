@@ -2,7 +2,7 @@
 
 postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "and", "ane", "ang", "ant",
             "arg", "arn", "art", "atch", "ave", "che", "cle",
-            "eep", "egg", "erg",
+            "eek", "eep", "egg", "erg",
             "ign", "ion", "ity",
             "nge", "nut", "ncy",
             "old", "ome" "ood", "ook", "ore", "ough", "our", "ous", "out",
@@ -15,8 +15,8 @@ postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame
             "ea", "ed", "ee", "ef", "el", "em", "en", "er", "es", "et", "ew", "ey",
             "ft", "ga", "ge", "go",
             "ic", "id", "ie", "il", "im", "in", "ip", "it",
-            "ld", "le", "lk", "ll", "lo", "lt", "ly",
-            "mb", "me", "mp", "nd", "ne", "ng", "nk", "nt", "ny",
+            "la", "ld", "le", "lk", "ll", "lo", "lt", "ly",
+            "mb", "me", "mp", "na", "nd", "ne", "ng", "nk", "nt", "ny",
             "oc", "oe", "og", "ol", "om", "on", "oo", "op", "or", "ot", "ow", "ox",
             "py",
             "rd", "re", "rl", "ry", "se", "sh", "ss", "st", "te", "th", "ty", "ub", "ue", "um", "un", "up", "ur", "us", "ut", "ve", "vy", "ye"]
@@ -30,6 +30,7 @@ postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame
 consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 vowels = ['a', 'e', 'i', 'o', 'u']
 vowelExceptions = ['chr', 'thr', 'thy', 'tyc', 'tyk', 'tyr']
+#slag, snag, knee - 4 letter words being mistakenly filtered.  Maybe make an exception to the rule?
 specialConsonantPairs = ['bl', 'br', 'ch', 'cl', 'cr', 'cy', 'dr', 'fl', 'fr', 'gh', 'gl', 'gr', 'hy', 'kn', 'll', 'my',
 						'ph', 'kn', 'ph', 'pl', 'pr', 'py', 'rh', 'ry', 'sc', 'sh', 'st', 'th', 'tr', 'wh', 'wr']
 
