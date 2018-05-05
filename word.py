@@ -2,7 +2,7 @@
 
 postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "and", "ane", "ang", "ant",
             "arg", "arn", "art", "atch", "ave", "che", "cle",
-            "eek", "eep", "egg", "erg",
+            "eek", "eep", "egg", "erg", "eta",
             "ign", "ion", "ity",
             "nge", "nut", "ncy",
             "old", "ome" "ood", "ook", "ore", "ough", "our", "ous", "out",
