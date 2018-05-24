@@ -3,7 +3,7 @@
 postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "and", "ane", "ang", "ant",
             "arg", "arn", "art", "atch", "ave", "che", "cle",
             "eek", "eep", "egg", "erg", "eta",
-            "ign", "ion", "ity",
+            "ign", "ion", "ism", "ity",
             "nge", "nut", "ncy",
             "old", "ome" "ood", "ook", "ore", "ough", "our", "ous", "out",
             "pen", "ple",
@@ -14,12 +14,12 @@ postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame
             "ce", "ch", "ck", "de",
             "ea", "ed", "ee", "ef", "el", "em", "en", "er", "es", "et", "ew", "ey",
             "ft", "ga", "ge", "go",
-            "ic", "id", "ie", "il", "im", "in", "ip", "it",
+            "ic", "id", "ie", "il", "im", "in", "ip", "ir", "it",
             "la", "ld", "le", "lk", "ll", "lo", "lt", "ly",
             "mb", "me", "mp", "na", "nd", "ne", "ng", "nk", "nt", "ny",
             "oc", "oe", "og", "ol", "om", "on", "oo", "op", "or", "ot", "ow", "ox",
             "py",
-            "rd", "re", "rl", "ry", "se", "sh", "ss", "st", "te", "th", "ty", "ub", "ue", "um", "un", "up", "ur", "us", "ut", "ve", "vy", "ye"]
+            "rd", "re", "rl", "ry", "se", "sh", "ss", "st", "sy", "te", "th", "ty", "ub", "ue", "um", "un", "up", "ur", "us", "ut", "ve", "vy", "ye"]
 
 # This system should really be combined into vowel + consonant pairings, so ex. -rl is only valid if it has a vowel before it
 
