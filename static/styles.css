@@ -63,3 +63,16 @@ td.odd {
 td {
   vertical-align: top;
 }
+
+li {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+#whatisthis {
+	color: #41b2e2;
+}
+
+#submitButton {
+	margin-top: 5px;
+}

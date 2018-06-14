@@ -1,5 +1,7 @@
 # word-unscrambler
 
+Currently hosted <a href="http://sheyin.pythonanywhere.com/">here</a>.
+
 I started writing this up when I was stumped playing "WordScapes" on iOS.  The premise of that game is that you have a pool of letters to unscramble and form words that fit on a crossword grid.  However, one of the things that frustrated me is that it does not follow "Scrabble rules" - ie. some abbreviations/slang is allowed, etc.  So simply matching up words against a dictionary might not work as well, though I'm sure one exists that would go through this process in a more logical manner.
 
 This program basically goes through and performs the actions I go through in my head.  I go through a mental list of common word patterns, and if there is one that is found in the given letters, then I make some permutations to mentally pronounce the word and see if it might be the one in question.  Even though this is effectively brute forcing combinations, it is still limited by the list of postfixes I added.  Plus, writing this up somehow makes me feel like this isn't quite cheating.
