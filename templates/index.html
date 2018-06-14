@@ -1,6 +1,7 @@
 <!doctype html>
 <title>Unscrambling letters</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 
 <div id="mainContent">
 
@@ -12,7 +13,7 @@
 		<form action = "/search" method="get">
 		<ul type= "disc">
 			<li>Letters to unscramble: <input type="text" name="letters" maxlength="10" size="4" id="letters">
-			<li>Length of the word to find: <input type="text" name="length" maxlength="2" size="1" onchange="checkLength()" id="length">
+			<li>Length of the word to find: <input type="text" name="length" maxlength="2" size="1" onchange="resetPartial()" id="length">
 			<li>Are there any known letters?: <input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='knownLetters'>Yes
 				<input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='unknownLetters' checked>No
 				<input type="hidden" name="knownLetters" default="" id="knownLettersBox">
@@ -23,63 +24,7 @@
 		</form>
 	</p>
 
-	<script type="text/javascript">
-		function getKnownLetters(knownNode){
-			var known = knownNode.value;
-			var length = document.getElementById('length').value;
 
-			if (known == 'True') {
-				var letterBlanks = '';
-				for (i=0; i<length; i++) {
-					idName = 'letter' + i;
-					letterBlanks += ' <input type="text" name=idName class="knownInput" maxlength="1" size="1" /> '
-				}
-				var formText = 'What letters are known?: <br>' + letterBlanks + '<br>';
-				document.getElementById('knownLetterEntry').innerHTML=formText;
-			}
-
-			else {
-				document.getElementById('knownLetterEntry').innerHTML='';
-			}
-		}
-	</script>
-
-	<script type="text/javascript">
-		function bundleKnownLetters(){
-			var knownSpaces = document.getElementsByClassName('knownInput');
-			for (i=0; i<document.getElementById('length').value; i++) {
-				knownLetters = document.getElementById('knownLettersBox');
-				if (knownSpaces[i].value == '') {
-					knownLetters.value += '_';
-				}
-				else {
-					knownLetters.value += knownSpaces[i].value;
-				}
-			}
-		}
-	</script>
-
-	<script type="text/javascript">
-		function resetForm() {
-			document.getElementById('letters').value = '';
-			document.getElementById('length').value = '';
-			document.getElementById('unknownLetters').checked = true;
-			document.getElementById('knownLetters').checked = false;
-			document.getElementById('knownLetterEntry').innerHTML = '';
-			document.getElementById('knownLettersBox').value = '';
-		}
-	</script>
-
-	<script type="text/javascript">
-		function checkLength() {
-			var lengthGiven = document.getElementById('length').value;
-			var lengthString = document.getElementById('letters').value.length;
-
-			if (lengthGiven > lengthString) {
-				document.getElementById('length').value = lengthString;
-			}
-		}
-	</script>
 
 	<div id="knownLetterEntry"></div>
 

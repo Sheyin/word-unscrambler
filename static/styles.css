@@ -1,3 +1,4 @@
+
 div.knownLetterEntry {
   text-indent: 20px;
   color: #EFEBFF;
@@ -15,6 +16,9 @@ button.reset {
 
 h1 {
     color: #EFEBFF;
+	line-height: 0.5em;
+	margin-bottom: 0;
+	margin-top: 5;
 }
 
 input.knownInput {
@@ -24,12 +28,20 @@ input.knownInput {
 #mainContent {
 	text-align: left;
 	width: 50%;
-	margin: auto;
-	boder: 3px dotted green;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-top: 0;
+  	padding:0;
 }
 
 p {
     color: #EFEBFF;
+}
+
+#note {
+	color: #ABABAB;
+	font-size: 85%;
 }
 
 table.solutions {

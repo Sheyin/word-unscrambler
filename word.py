@@ -7,7 +7,7 @@ postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame
             "eek", "eep", "egg", "erg", "eta", "ght",
             "ign", "ion", "ity",
             "nge", "nut", "ncy",
-            "old", "ome" "ood", "ook", "ore", "ough", "our", "ous", "out",
+            "old", "ome" "ood", "ook", "ore", "ough", "oul", "our", "ous", "out",
             "pen", "ple",
             "rge", "rin", "rve",
             "ten", "the", "thin", "thy", "tic", "tin", "tion", "uff", "val", "vel",
