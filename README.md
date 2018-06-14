@@ -24,7 +24,7 @@ Bugs:
 Usage:
 <b>python main.py</b> runs the console-only version.
 
-The other method requires <a href="http://flask.pocoo.org/">installing Flask</a>, setting FLASK_APP to <b>main_flask.py</b>, then running flask by entering <b>flask run</b>. (This is the preferred route; it is much easier to use than the console-only interface.)
+The other method (preferred route) requires <a href="http://flask.pocoo.org/">installing Flask</a>, setting FLASK_APP to <b>main_flask.py</b>, then running flask by entering <b>flask run</b>. This is the preferred route because it is much easier to use and test, as well as having some safeguards that the console version lacks.
 
 Screenshots:  
 <img src="screenshots/unscrambler1.jpg" alt="Entering info about the word">  
