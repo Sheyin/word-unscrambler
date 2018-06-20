@@ -1,6 +1,6 @@
 # List of prefixes/postfixes to check against
 
-postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "and", "ane", "ang", "ant",
+postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "amp", "and", "ane", "ang", "ant",
             "arg", "arn", "art", "atch", "ave", "che", "cle",
             "eek", "eep", "egg", "erg", "eta",
             "ign", "ion", "ism", "ity",

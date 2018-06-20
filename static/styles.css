@@ -7,6 +7,7 @@ div.knownLetterEntry {
 body {
     background-color: #353438;
     color: #EFEBFF;
+	font-family: sans-serif;
 }
 
 button.reset {
@@ -17,31 +18,17 @@ button.reset {
 h1 {
     color: #EFEBFF;
 	line-height: 0.5em;
-	margin-bottom: 0;
-	margin-top: 5;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: bold;
 }
 
 input.knownInput {
   size: 25%;
 }
 
-#mainContent {
-	text-align: left;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-top: 0;
-  	padding:0;
-}
-
 p {
     color: #EFEBFF;
-}
-
-#note {
-	color: #ABABAB;
-	font-size: 85%;
 }
 
 table.solutions {
@@ -75,4 +62,57 @@ li {
 
 #submitButton {
 	margin-top: 5px;
+}
+
+#header {
+	color: #EFEBFF;
+	font-size: 2em;
+	margin-top: 5px;
+}
+
+#filteredHeader {
+	margin-top: 15px;
+	font-size: 1.5em;
+}
+
+#note {
+	color: #ABABAB;
+	font-size: 85%;
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+#wordlogo {
+    max-width: 100%;
+    height: auto;
+	position: relative;
+	z-index: -1;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#imageAndMain {
+	position: absolute;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-top: 0px;
+	left: 0;
+	right: 0;
+	padding:0;
+	background-image: url('wordlogo.png');
+	background-repeat: no-repeat;
+}
+
+#mainContent {
+	text-align: left;
+	margin-left: 150px;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-top: 110px;
+  	padding:0;
+	position: relative;
+	z-index: 10;
+	width: 80%;
 }

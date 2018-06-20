@@ -2,15 +2,41 @@
 <title>Results for {{ letters }}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
-<div id="mainContent">
-	{% if solutions %}
-		<h1>{{numResults}} results found for {{ letters }}:</h1>
-		<p id="note">This is a partial list of possible results - it's up to you to figure out the answer.</p>
+<div id="imageAndMain">
+	<div id="mainContent">
+		{% if solutions %}
+			<div id="header">{{numResults}} results found for {{ letters }}:</div>
+			<p id="note">This is a partial list of possible results - it's up to you to figure out the answer.</p>
+
+			<div id="columnWrapper">
+				<table id="solutionsWrapper">
+					<tr>
+					{%- for column in solutions|slice(10) %}
+						<td>
+							<table id = "solutions">
+								{%- for word in column %}
+									<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
+								{%- endfor %}
+							</table>
+						</td>
+					{%- endfor %}
+					</tr>
+				</table>
+			</div>
+
+
+			{% else %}
+			<h1>No results found for {{ letters }}.</h1>
+		{% endif %}
+
+		{% if filteredSolutions %}
+		<div id="filteredHeader">{{numFiltered}} unlikely results were filtered out:</div>
+		<p id="note">These did not have a vowel in the first half of the word.</p>
 
 		<div id="columnWrapper">
 			<table id="solutionsWrapper">
 				<tr>
-				{%- for column in solutions|slice(10) %}
+				{%- for column in filteredSolutions|slice(10) %}
 					<td>
 						<table id = "solutions">
 							{%- for word in column %}
@@ -22,30 +48,7 @@
 				</tr>
 			</table>
 		</div>
+		{% endif %}
 
-
-		{% else %}
-		<h1>No results found for {{ letters }}.</h1>
-	{% endif %}
-
-	{% if filteredSolutions %}
-	<h3>{{numFiltered}} unlikely results were filtered out:</h3>
-
-	<div id="columnWrapper">
-		<table id="solutionsWrapper">
-			<tr>
-			{%- for column in filteredSolutions|slice(10) %}
-				<td>
-					<table id = "solutions">
-						{%- for word in column %}
-							<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
-						{%- endfor %}
-					</table>
-				</td>
-			{%- endfor %}
-			</tr>
-		</table>
 	</div>
-	{% endif %}
-
 </div>

@@ -1,6 +1,6 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
-from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults, removeResults
+from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, filterResultsLackingVowels
 import word
 from copy import copy
 from flask import Flask, render_template, request
@@ -14,7 +14,11 @@ def start():
 def search():
 	raw_letters = request.args.get('letters', '')
 	num_spaces = int(request.args.get('length', ''))
-	known = bool(request.args.get('known', ''))
+	known_input = request.args.get('known', '')
+	# This is necessary because Python bool() only checks the string is empty or not
+	known = False
+	if known_input == "True":
+		known = True
 	knownLetters = request.args.get('knownLetters', '')
 	solutions = []
 
@@ -24,17 +28,20 @@ def search():
 
 	# Check if these letters are a subset of the list of letters, then display combinations
 	for combination in word.postfixes:
-		if set(list(combination)).issubset(letters):
-			if checkDuplicateLetters(copy(letters), combination):
-				solutions += unscramble(copy(letters), combination, "postfix", num_spaces, solutions)
+		# Testing removing this since the inner loop is doing the same thing
+		#if set(list(combination)).issubset(letters):
+		if postfixIsInLetterPool(copy(letters), combination):
+			solutions += unscramble(copy(letters), combination, num_spaces, solutions)
 
 	if known:
-	    solutions = filterKnownLetters(solutions, knownLetters)
+		solutions = filterKnownLetters(solutions, knownLetters)
 
-	# Making this >3 because of irregularities, such as "pry"
+	# Making this >4 because of irregularities, such as "pry", which would cause all
+	# results to be filtered, since it would see 'pr', no vowel, and then remove it.
+	# The "filtered solutions" will still be displayed but underneath the normal results.
 	filteredSolutions = []
 	if num_spaces > 4:
-		solutions, filteredSolutions = removeResults(solutions)
+		solutions, filteredSolutions = filterResultsLackingVowels(solutions)
 	numFiltered = len(filteredSolutions)
 
 	# TODO: Recheck filtering duplicate entries - appears to be showing up again

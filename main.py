@@ -1,6 +1,6 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
-from functions import unscramble, checkDuplicateLetters, filterKnownLetters, printResults, removeResults
+from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, removeResults
 import word
 from copy import copy
 
@@ -21,15 +21,16 @@ if ('y' in confirmKnownSpaces.lower()):
 
 solutions = []
 
-# TODO: Check inputs for validity before proceeding
+# TODO: Check inputs for validity before proceeding.
 
 letters = list(raw_letters.lower())
 
 # Check if these letters are a subset of the list of letters, then display combinations
 for combination in word.postfixes:
-    if set(list(combination)).issubset(letters):
-        if checkDuplicateLetters(copy(letters), combination):
-            solutions += unscramble(copy(letters), combination, "postfix", num_spaces, solutions)
+    # Testing removing this since the inner loop is doing the same thing
+	#if set(list(combination)).issubset(letters):
+    if postfixIsInLetterPool(copy(letters), combination):
+        solutions += unscramble(copy(letters), combination, num_spaces, solutions)
 
 if ('y' in confirmKnownSpaces.lower()):
     solutions = filterKnownLetters(solutions, knownLetters)
