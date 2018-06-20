@@ -1,27 +1,30 @@
 # List of prefixes/postfixes to check against
 
-postfixes = ["ach", "ack", "act", "acy", "age", "aid", "aim", "ain", "air", "ame", "amp", "and", "ane", "ang", "ant",
-            "arg", "arn", "art", "atch", "ave", "che", "cle",
-            "eek", "eep", "egg", "erg", "eta",
-            "ign", "ion", "ism", "ity",
-            "eek", "eep", "egg", "erg", "eta", "ght",
-            "ign", "ion", "ity",
-            "nge", "nut", "ncy",
-            "old", "ome" "ood", "ook", "ore", "ough", "oul", "our", "ous", "out",
-            "pen", "ple",
-            "rge", "rin", "rve",
-            "ten", "the", "thin", "thy", "tic", "tin", "tion", "uff", "val", "vel",
-            "ag", "al", "am", "an", "ap", "ar", "at", "ay",
+postfixes = ["act", "alpha",
+            "che",
+            "eek", "eep", "egg", "ewd",
+			"ght",
+            "ign", "ism", "ity", "kappa", "lambda",
+            "ood", "ook", "ough", "oul",
+            "the", "thy",
+            "ab", "ad", "ag", "al", "am", "an", "ap", "ar", "at", "ay",
             "be",
-            "ce", "ch", "ck", "de",
+            "ce", "ch", "ck", "cy", "de",
             "ea", "ed", "ee", "ef", "el", "em", "en", "er", "es", "et", "ew", "ey",
-            "ft", "ga", "ge", "go",
+            "ff", "ft", "ga", "ge", "go", "hi",
             "ic", "id", "ie", "il", "im", "in", "ip", "ir", "it",
             "la", "ld", "le", "lk", "ll", "lo", "lt", "ly",
-            "mb", "me", "mp", "na", "nd", "ne", "ng", "nk", "nt", "ny",
+            "ma", "mb", "me", "mp", "na", "nd", "ne", "ng", "nk", "nt", "ny",
             "oc", "oe", "og", "ol", "om", "on", "oo", "op", "or", "ot", "ow", "ox",
             "py",
-            "rd", "re", "rl", "ry", "se", "sh", "ss", "st", "sy", "te", "th", "ty", "ub", "ue", "um", "un", "up", "ur", "us", "ut", "ve", "vy", "ye"]
+            "ra", "rd", "re", "rg", "rl", "rn", "ry", "rt",
+			"se", "sh", "ss", "st", "sy",
+			"ta", "te", "th", "ty",
+			"ub", "ue", "um", "un", "up", "ur", "us", "ut",
+			"ve", "vy", "we", "ye"]
+
+# TODO: There should be an exception list for greek letters since they aren't really postfixes but show up commonly.
+# They would also only be exact matches, never partial. ex. alpha, lambda, tau, etc.
 
 # This system should really be combined into vowel + consonant pairings, so ex. -rl is only valid if it has a vowel before it
 
