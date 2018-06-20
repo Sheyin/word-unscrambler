@@ -1,6 +1,6 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
-from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, filterResultsLackingVowels
+from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, filterResultsLackingVowels, filterUnusualResults, invalidInput
 import word
 from copy import copy
 from flask import Flask, render_template, request
@@ -13,37 +13,35 @@ def start():
 @app.route('/search', methods=['GET'])
 def search():
 	raw_letters = request.args.get('letters', '')
-	num_spaces = int(request.args.get('length', ''))
+	num_spaces_input = request.args.get('length', '')
 	known_input = request.args.get('known', '')
-	# This is necessary because Python bool() only checks the string is empty or not
-	known = False
-	if known_input == "True":
-		known = True
 	knownLetters = request.args.get('knownLetters', '')
-	solutions = []
 
-	# TODO: Check inputs for validity before proceeding
+	invalid, invalidReason, known = invalidInput(raw_letters, num_spaces_input, known_input, knownLetters)
+	if invalid:
+		print("Error: invalid input because " + invalidReason)
+		return render_template('error.html', reason=invalidReason)
+
+	# Only do these after input has been checked
+	num_spaces = int(num_spaces_input)
+	solutions = []
 
 	letters = list(raw_letters.lower())
 
 	# Check if these letters are a subset of the list of letters, then display combinations
 	for combination in word.postfixes:
-		# Testing removing this since the inner loop is doing the same thing
-		#if set(list(combination)).issubset(letters):
 		if postfixIsInLetterPool(copy(letters), combination):
 			solutions += unscramble(copy(letters), combination, num_spaces, solutions)
 
 	if known:
 		solutions = filterKnownLetters(solutions, knownLetters)
 
-	# Making this >4 because of irregularities, such as "pry", which would cause all
-	# results to be filtered, since it would see 'pr', no vowel, and then remove it.
-	# The "filtered solutions" will still be displayed but underneath the normal results.
 	filteredSolutions = []
+	solutions, filteredSolutions = filterUnusualResults(solutions)
 	if num_spaces > 4:
 		solutions, filteredSolutions = filterResultsLackingVowels(solutions)
-	numFiltered = len(filteredSolutions)
+	# sort() didn't seem to work, but sorted() does - requires a new variable though
+	sortedSolutions = sorted(solutions, key=str.lower)
+	sortedFilteredSolutions = sorted(filteredSolutions, key=str.lower)
 
-	# TODO: Recheck filtering duplicate entries - appears to be showing up again
-
-	return render_template('results.html', numResults=len(solutions), letters=raw_letters, solutions=solutions, filteredSolutions=filteredSolutions, numFiltered=numFiltered)
+	return render_template('results.html', numResults=len(solutions), letters=raw_letters, solutions=sortedSolutions, filteredSolutions=sortedFilteredSolutions, numFiltered=len(filteredSolutions))

@@ -103,6 +103,7 @@ li {
 	padding:0;
 	background-image: url('wordlogo.png');
 	background-repeat: no-repeat;
+	min-height: 210px;
 }
 
 #mainContent {

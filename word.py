@@ -23,6 +23,15 @@ postfixes = ["act", "alpha",
 			"ub", "ue", "um", "un", "up", "ur", "us", "ut",
 			"ve", "vy", "we", "ye"]
 
+
+
+# Allowed to start with any vowel, or vowel + consonant
+# Or any constant + c, r, l, h, y, t, in second space
+softConsonants = ['c', 'h', 'l', 'r', 't', 'y']
+startWithExceptions = ['kn', 'll', 'ps', 'ts']
+#legalStartingVowelPairings = ["aa", "ai", "au", "ea", "ee", "eo", "eu", "oa", "oi", "oo", "ou"]
+illegalStartingVowelPairings = ["ae", "ao", "ei", "ia", "ie", "ii", "io", "iu", "oe", "ua", "ue", "ui", "uo", "uu"]
+
 # TODO: There should be an exception list for greek letters since they aren't really postfixes but show up commonly.
 # They would also only be exact matches, never partial. ex. alpha, lambda, tau, etc.
 
@@ -36,11 +45,18 @@ consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', '
 vowels = ['a', 'e', 'i', 'o', 'u']
 vowelExceptions = ['chr', 'thr', 'thy', 'tyc', 'tyk', 'tyr']
 #slag, snag, knee - 4 letter words being mistakenly filtered.  Maybe make an exception to the rule?
-specialConsonantPairs = ['bl', 'br', 'ch', 'cl', 'cr', 'cy', 'dr', 'fl', 'fr', 'gh', 'gl', 'gr', 'hy', 'kn', 'll', 'my',
-						'ph', 'kn', 'ph', 'pl', 'pr', 'py', 'rh', 'ry', 'sc', 'sh', 'st', 'th', 'tr', 'wh', 'wr']
+
 
 # Some removed pairings that aren't really used for the start of words.
 # nt, ly, ty, rd, mp
+# This is inefficient but compiling this will give me a better idea of a more general rule.
+neverStartWith = ["bb", "bc", "bd", ""
+			"cd", "cn",
+			"mc", "mp", "mt",
+			"nc", "nd", "nt",
+			"pm", "rd",
+			"tm", "tp",
+			]
 
 # Think about letter pairs that will never be matched -> regular expression
 # ex. mc, gp, dp, qc, etc. should be filtered in an expression

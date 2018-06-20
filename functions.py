@@ -5,7 +5,7 @@ import itertools
 import re
 import textwrap
 from math import ceil
-from word import vowels, vowelExceptions, specialConsonantPairs
+from word import softConsonants, startWithExceptions, illegalStartingVowelPairings, vowels, consonants, vowelExceptions
 
 # Letters: the pool of letters to choose from
 # Subset: a detected combination of letters to exclude from the pool and build combinations upon
@@ -75,6 +75,7 @@ def filterKnownLetters(solutions, knownLetters):
 	def buildRegularExpression():
 		expression = ""
 		for character in knownLetters:
+			# TODO: May want to make this less permissive - only _ for blanks
 			if character in ['', ' ', '.', ';', ',', '_']:
 				expression += '.'
 			else:
@@ -94,6 +95,14 @@ def filterKnownLetters(solutions, knownLetters):
 # Tries to filter out some of the junk results by eliminating words without a vowel in the first few spaces
 # It should only be called if the word is a certain length (>4), since there are 3-letter words with no vowels.
 def filterResultsLackingVowels(solutions):
+	# Checks if a subset (vowel, letter pair, etc) is present in a (sub)string; (firstHalfOfWord) returns a boolean value
+	def checkForSubset():
+		vowelsAndExceptions = vowels + vowelExceptions
+		for _ in vowelsAndExceptions:
+			if _ in firstHalfOfWord:
+				return True
+		return False
+
 	trimmedSolutions = []
 	unlikelySolutions = []
 
@@ -102,20 +111,87 @@ def filterResultsLackingVowels(solutions):
 		firstHalfOfWord = word[0:halfWordLength]
 
 		# Checks if there is a vowel or exception to vowel in the first half of the word
-		if(checkForSubset(firstHalfOfWord)):
+		if(checkForSubset()):
 			trimmedSolutions.append(word)
 		else:
 			unlikelySolutions.append(word)
+
 	return trimmedSolutions, unlikelySolutions
 
 
-# Checks if a subset (vowel, letter pair, etc) is present in a (sub)string; returns a boolean value
-def checkForSubset(substring):
-	vowelsAndExceptions = vowels + vowelExceptions
-	for _ in vowelsAndExceptions:
-		if _ in substring:
-			return True
-	return False
+# Tries to filter words based on the beginning characters - most words will never start with certain
+# combinations of letters, though there are exceptions.
+def filterUnusualResults(solutions):
+	trimmedSolutions = []
+	unlikelySolutions = []
+
+	for word in solutions:
+		# If starts with vowel, allow all but words starting with certain vowel-vowel pairings.
+		if word[0] in vowels:
+			if word[1] in vowels and word[0:2] in illegalStartingVowelPairings:
+				unlikelySolutions.append(word)
+			else:
+				trimmedSolutions.append(word)
+		# Starts with consonant, if second character is a vowel or 'soft consonant', allow.
+		# Else, reject unless first two letters is in startsWithExceptions.
+		else:
+			if word[1] in vowels or word[1] in softConsonants or word[0:2] in startWithExceptions:
+				trimmedSolutions.append(word)
+			else:
+				unlikelySolutions.append(word)
+	return trimmedSolutions, unlikelySolutions
+
+
+
+# Used for validating input.  Returns true if something is invalid and what caused the error.
+def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
+	# Checking letter input for non-letter input
+	if raw_letters == "":
+		return True, "Error: No letters given to search.", False
+	elif len(raw_letters) < 3:
+		return True, "Error: This tool was only designed for words of at least length 3.", False
+	else:
+		regex = re.compile('[^a-z]+')
+		if re.match(regex, raw_letters):
+			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
+
+	# Checking num_spaces for numeric input only
+	if num_spaces == "":
+		return True, "Error: Length of word to search for was not given.", False
+	else:
+		regex = re.compile('[^0-9]+')
+		if re.match(regex, num_spaces):
+			return True, "Error: Invalid input detected in number of letters.  Must be numeric digits, 0-9 only.", False
+		elif int(num_spaces) == 0:
+			return True, "Error: The word you are searching for has a length of 0.", False
+		elif int(num_spaces) in range(1,3):
+			return True, "Error: This tool was only designed for words of at least length 3.", False
+
+	# Checking known_letters for valid input.  If unknown, it should be replaced with a _ in the info sent to the server.
+	# It is legal to be empty (though shouldn't do anything) and known_input should be false.
+	if known_input == "True":
+		if knownLetters == "":
+			return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
+		else:
+			regex = re.compile('[^a-z_]+|[\d]+')
+			if re.match(regex, knownLetters):
+				return True, "Error: the known letters can only contain the letters a-z.", False
+			else:
+				# At this point, known letters consists of legal input a-z or _ if it is an unknown letter
+				regex = re.compile('[a-z]+')
+				# This is intentionally reversed - regex checks if it has at least a letter in it, the if statement checks for "if no a-z letter in it"
+				if not re.match(regex, knownLetters):
+					return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
+				# There should technically be a case here for "if letters were given but known_input is false" but making it so the letters are disregarded.
+	elif known_input not in ['True', 'False', '']:
+		return True, "...Are you messing with something you shouldn't be?  Either you know letters in the word, or you don't.", False
+
+	# At this point, everything is good
+	# This is necessary because Python bool() only checks the string is empty or not
+	if known_input == "True":
+		return False, "", True
+	else:
+		return False, "", False
 
 
 # Prints results, hopefully in columns, for easier reading.  Only for console version.
