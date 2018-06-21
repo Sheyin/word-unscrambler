@@ -1,4 +1,5 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
+# Source: https://github.com/Sheyin/word-unscrambler
 
 from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, filterResultsLackingVowels, filterUnusualResults, invalidInput
 import word

@@ -8,26 +8,22 @@ This program basically goes through and performs the actions I go through in my 
 
 Currently, this algorithm is not intelligent - it simply searches through patterns I have entered and prints a list.  I hope to improve on this (and hopefully find the answer to the word(s) I'm stuck on in the process).  It sort of works, but struggles with some of the more unique word combinations / ones I haven't thought of yet.  A major problem is that it currently lacks a method of filtering junk from the results, so it is easy to overlook a word that it has discovered.
 
-Current working features:
-- (some) Postfixes
-- Basic matching and permutations
-- Generates words that are composed of less than the maximum amount of letters
-- Limiting words based on known letter positions
-- (some) handling of plurals
+Features:
+- Calculates combinations of letters, currently only if it matches a specified postfix
+- Filters some junk results based on lack of vowels, unusual starting letters
+- Performs input validation and returns error messages
 
 Things to add:
-- Improving algorithm - right now it is not precisely efficient
-- Intelligent filtering of less likely letter combinations
-- More combinations (mostly focusing on adding postfixes, some may have been overlooked)
+- Improving algorithm (debating on how at this point)
 
 Bugs:
-- Work on filtering duplicates
+- Fixed the ones I know about - let me know if you find more!
 
 Usage:
-<b>python main.py</b> runs the console-only version.
+It is currently hosted <a href="http://sheyin.pythonanywhere.com/">here</a>.
 
-The other method (preferred route) requires <a href="http://flask.pocoo.org/">installing Flask</a>, setting FLASK_APP to <b>main_flask.py</b>, then running flask by entering <b>flask run</b>. This is the preferred route because it is much easier to use and test, as well as having some safeguards that the console version lacks.
+To run it yourself, <a href="http://flask.pocoo.org/">Flask</a> needs to be installed.  On Windows, set FLASK_APP to <b>main.py</b>, then running flask by entering <b>flask run</b>.
 
 Screenshots:  
-<img src="screenshots/unscrambler1.jpg" alt="Entering info about the word">  
-<img src="screenshots/unscrambler2.jpg" alt="Results found by the program">  
+<img src="screenshots/screenshot1.jpg" alt="Entering info about the word">  
+<img src="screenshots/screenshot2.jpg" alt="Results found by the program">  
