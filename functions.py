@@ -146,14 +146,23 @@ def filterUnusualResults(solutions):
 # Used for validating input.  Returns true if something is invalid and what caused the error.
 def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
 	# Checking letter input for non-letter input
+	print("raw_letters: " + str(raw_letters))
 	if raw_letters == "":
 		return True, "Error: No letters given to search.", False
 	elif len(raw_letters) < 3:
 		return True, "Error: This tool was only designed for words of at least length 3.", False
 	else:
+		print("Testing if non-letter characters here")
 		regex = re.compile('[^a-z]+')
 		if re.match(regex, raw_letters):
 			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
+		# Putting the following in here because the above line works perfectly in a regex test but not live.
+		else:
+			regex = re.compile('[-_.,+=;:!?~`/]+')
+			if re.match(regex, raw_letters):
+				return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
+
+		print("Passed check.  regex: " + str(regex))
 
 	# Checking num_spaces for numeric input only
 	if num_spaces == "":
