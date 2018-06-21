@@ -25,5 +25,5 @@ It is currently hosted <a href="http://sheyin.pythonanywhere.com/">here</a>.
 To run it yourself, <a href="http://flask.pocoo.org/">Flask</a> needs to be installed.  On Windows, set FLASK_APP to <b>main.py</b>, then running flask by entering <b>flask run</b>.
 
 Screenshots:  
-<img src="screenshots/screenshot1.jpg" alt="Entering info about the word">  
-<img src="screenshots/screenshot2.jpg" alt="Results found by the program">  
+<img src="screenshots/screenshot1.png" alt="Entering info about the word">  
+<img src="screenshots/screenshot2.png" alt="Results found by the program">  
