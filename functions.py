@@ -144,32 +144,24 @@ def filterUnusualResults(solutions):
 
 
 # Used for validating input.  Returns true if something is invalid and what caused the error.
+# Note that re.match only checks the beginning of the string, while re.search checks it all.
 def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
 	# Checking letter input for non-letter input
-	print("raw_letters: " + str(raw_letters))
 	if raw_letters == "":
 		return True, "Error: No letters given to search.", False
 	elif len(raw_letters) < 3:
 		return True, "Error: This tool was only designed for words of at least length 3.", False
 	else:
-		print("Testing if non-letter characters here")
 		regex = re.compile('[^a-z]+')
-		if re.match(regex, raw_letters):
+		if re.search(regex, raw_letters):
 			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
-		# Putting the following in here because the above line works perfectly in a regex test but not live.
-		else:
-			regex = re.compile('[-_.,+=;:!?~`/]+')
-			if re.match(regex, raw_letters):
-				return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
-
-		print("Passed check.  regex: " + str(regex))
 
 	# Checking num_spaces for numeric input only
 	if num_spaces == "":
 		return True, "Error: Length of word to search for was not given.", False
 	else:
 		regex = re.compile('[^0-9]+')
-		if re.match(regex, num_spaces):
+		if re.search(regex, num_spaces):
 			return True, "Error: Invalid input detected in number of letters.  Must be numeric digits, 0-9 only.", False
 		elif int(num_spaces) == 0:
 			return True, "Error: The word you are searching for has a length of 0.", False
@@ -183,13 +175,13 @@ def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
 			return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
 		else:
 			regex = re.compile('[^a-z_]+|[\d]+')
-			if re.match(regex, knownLetters):
+			if re.search(regex, knownLetters):
 				return True, "Error: the known letters can only contain the letters a-z.", False
 			else:
 				# At this point, known letters consists of legal input a-z or _ if it is an unknown letter
 				regex = re.compile('[a-z]+')
-				# This is intentionally reversed - regex checks if it has at least a letter in it, the if statement checks for "if no a-z letter in it"
-				if not re.match(regex, knownLetters):
+				result = re.search(regex, knownLetters)
+				if not re.search(regex, knownLetters):
 					return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
 				# There should technically be a case here for "if letters were given but known_input is false" but making it so the letters are disregarded.
 	elif known_input not in ['True', 'False', '']:

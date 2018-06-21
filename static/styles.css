@@ -8,6 +8,7 @@ body {
     background-color: #353438;
     color: #EFEBFF;
 	font-family: sans-serif;
+	margin-top: 0px;
 }
 
 button.reset {

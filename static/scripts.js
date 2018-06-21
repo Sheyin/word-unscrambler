@@ -30,6 +30,10 @@ function bundleKnownLetters() {
 		else {
 			knownLetters.value += knownSpaces[i].value;
 		}
+		// When done reading each space, should set it to "disabled" so it is not sent in the request.
+		// But it's not quite working.
+		// knownLetters.innerHTML = ' <input type="text" name=idName class="knownInput" maxlength="1" size="1" disabled /> '
+
 	}
 }
 
