@@ -19,7 +19,7 @@ def search():
 
 	invalid, invalidReason, known = invalidInput(raw_letters, num_spaces_input, known_input, knownLetters)
 	if invalid:
-		print("Error: invalid input because " + invalidReason)
+		print(invalidReason)
 		return render_template('error.html', reason=invalidReason)
 
 	# Only do these after input has been checked

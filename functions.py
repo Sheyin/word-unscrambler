@@ -79,7 +79,7 @@ def filterKnownLetters(solutions, knownLetters):
 			if character in ['', ' ', '.', ';', ',', '_']:
 				expression += '.'
 			else:
-				expression += character
+				expression += character.lower()
 			# Note to self - assignments go into innermost scope, causing nested error - https://stackoverflow.com/questions/5218895/python-nested-functions-variable-scoping
 		return expression
 
@@ -152,7 +152,7 @@ def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
 	elif len(raw_letters) < 3:
 		return True, "Error: This tool was only designed for words of at least length 3.", False
 	else:
-		regex = re.compile('[^a-z]+')
+		regex = re.compile('[^a-zA-Z]+')
 		if re.search(regex, raw_letters):
 			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
 
@@ -174,15 +174,19 @@ def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
 		if knownLetters == "":
 			return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
 		else:
-			regex = re.compile('[^a-z_]+|[\d]+')
+			regex = re.compile('[^a-zA-Z_]+|[\d]+')
 			if re.search(regex, knownLetters):
 				return True, "Error: the known letters can only contain the letters a-z.", False
 			else:
 				# At this point, known letters consists of legal input a-z or _ if it is an unknown letter
-				regex = re.compile('[a-z]+')
+				regex = re.compile('[a-zA-Z]+')
 				result = re.search(regex, knownLetters)
 				if not re.search(regex, knownLetters):
 					return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
+				# Check if each of the known letters is in the letters given
+				for _ in knownLetters:
+					if _ is not '_' and _ not in raw_letters:
+						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given.", False
 				# There should technically be a case here for "if letters were given but known_input is false" but making it so the letters are disregarded.
 	elif known_input not in ['True', 'False', '']:
 		return True, "...Are you messing with something you shouldn't be?  Either you know letters in the word, or you don't.", False
