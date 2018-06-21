@@ -212,14 +212,3 @@ def printResults(solutions):
         else:
             print("   " + text, end='')
         columnCounter += 1
-
-
-
-# Not yet complete.  Trying to implement checking for specialConsonantPairs with a regular expression
-#def checkStartingConsonants(substring):
-	#vowelString = ''.join(word.vowels)
-	#vowelExpression = '[' + vowelString + ']'
-	#consonantExpression = '[^' + vowelString + ']'
-	#expression = vowelExpression + '(?=)' + consonantExpression
-	#regex = re.compile(expression)
-	#if re.match(regex, substring):

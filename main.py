@@ -1,52 +1,47 @@
 # The goal is to create a list of word-patterns based on certain letter combinations in the English language.
 
-from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, removeResults
+from functions import unscramble, postfixIsInLetterPool, filterKnownLetters, printResults, filterResultsLackingVowels, filterUnusualResults, invalidInput
 import word
 from copy import copy
+from flask import Flask, render_template, request
+app = Flask(__name__)
 
-print("Enter the letters given:")
-raw_letters = input()
+@app.route('/', methods=['GET'])
+def start():
+	return render_template('index.html')
 
-print("How many letters is the word?: ")
-num_spaces = int(input())
+@app.route('/search', methods=['GET'])
+def search():
+	raw_letters = request.args.get('letters', '')
+	num_spaces_input = request.args.get('length', '')
+	known_input = request.args.get('known', '')
+	knownLetters = request.args.get('knownLetters', '')
 
-print("Are there any known spaces?: ")
-confirmKnownSpaces = input()
-knownLetters = []
+	invalid, invalidReason, known = invalidInput(raw_letters, num_spaces_input, known_input, knownLetters)
+	if invalid:
+		print("Error: invalid input because " + invalidReason)
+		return render_template('error.html', reason=invalidReason)
 
-if ('y' in confirmKnownSpaces.lower()):
-    for counter in range(0, num_spaces):
-        print("What is in slot " + str(counter + 1) + "? Press space or enter if not known.")
-        knownLetters.append(input().lower())
+	# Only do these after input has been checked
+	num_spaces = int(num_spaces_input)
+	solutions = []
 
-solutions = []
+	letters = list(raw_letters.lower())
 
-# TODO: Check inputs for validity before proceeding.
+	# Check if these letters are a subset of the list of letters, then display combinations
+	for combination in word.postfixes:
+		if postfixIsInLetterPool(copy(letters), combination):
+			solutions += unscramble(copy(letters), combination, num_spaces, solutions)
 
-letters = list(raw_letters.lower())
+	if known:
+		solutions = filterKnownLetters(solutions, knownLetters)
 
-# Check if these letters are a subset of the list of letters, then display combinations
-for combination in word.postfixes:
-    # Testing removing this since the inner loop is doing the same thing
-	#if set(list(combination)).issubset(letters):
-    if postfixIsInLetterPool(copy(letters), combination):
-        solutions += unscramble(copy(letters), combination, num_spaces, solutions)
+	filteredSolutions = []
+	solutions, filteredSolutions = filterUnusualResults(solutions)
+	if num_spaces > 4:
+		solutions, filteredSolutions = filterResultsLackingVowels(solutions)
+	# sort() didn't seem to work, but sorted() does - requires a new variable though
+	sortedSolutions = sorted(solutions, key=str.lower)
+	sortedFilteredSolutions = sorted(filteredSolutions, key=str.lower)
 
-if ('y' in confirmKnownSpaces.lower()):
-    solutions = filterKnownLetters(solutions, knownLetters)
-
-preFilteredSolutionsCount = len(solutions)
-
-# Making this >3 because of irregularities, such as "pry"
-if num_spaces > 4:
-	solutions, filteredSolutions = removeResults(solutions)
-
-# TODO: Recheck filtering duplicate entries - appears to be showing up again
-
-print("\nSolutions: (" + (str(len(solutions))) + " found)")
-printResults(solutions)
-print("\nUnlikely Solutions: (" + (str(len(filteredSolutions))) + " found)")
-printResults(filteredSolutions)
-print("\nCurrent # of solutions: " + str(len(solutions)) + " Unlikely: " + str(preFilteredSolutionsCount - len(solutions)))
-
-print("\n--- End ---")
+	return render_template('results.html', numResults=len(solutions), letters=raw_letters, solutions=sortedSolutions, filteredSolutions=sortedFilteredSolutions, numFiltered=len(filteredSolutions))
