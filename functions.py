@@ -81,7 +81,6 @@ def filterUnusualResults(solutions):
 			# No words starting with these letters followed by another consonant
 			if word[0] in ['h', 'l', 'y']:
 				return True
-			# There are no words starting with these letters and having a con
 			elif word[0:2] in softConsonantPairsLegal:
 				return False
 
