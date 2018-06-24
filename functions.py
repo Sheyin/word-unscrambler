@@ -145,58 +145,68 @@ def filterUnusualResults(solutions):
 
 # Used for validating input.  Returns true if something is invalid and what caused the error.
 # Note that re.match only checks the beginning of the string, while re.search checks it all.
-def invalidInput(raw_letters, num_spaces, known_input, knownLetters):
+def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 	# Checking letter input for non-letter input
-	if raw_letters == "":
+	if lettersInput == "":
 		return True, "Error: No letters given to search.", False
-	elif len(raw_letters) < 3:
+	elif len(lettersInput) < 3:
 		return True, "Error: This tool was only designed for words of at least length 3.", False
 	else:
 		regex = re.compile('[^a-zA-Z]+')
-		if re.search(regex, raw_letters):
+		if re.search(regex, lettersInput):
 			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
 
-	# Checking num_spaces for numeric input only
-	if num_spaces == "":
+	# Checking numSpacesInput for numeric input only
+	if numSpacesInput == "":
 		return True, "Error: Length of word to search for was not given.", False
 	else:
 		regex = re.compile('[^0-9]+')
-		if re.search(regex, num_spaces):
+		if re.search(regex, numSpacesInput):
 			return True, "Error: Invalid input detected in number of letters.  Must be numeric digits, 0-9 only.", False
-		elif int(num_spaces) == 0:
+		elif int(numSpacesInput) == 0:
 			return True, "Error: The word you are searching for has a length of 0.", False
-		elif int(num_spaces) in range(1,3):
+		elif int(numSpacesInput) in range(1,3):
 			return True, "Error: This tool was only designed for words of at least length 3.", False
 
 	# Checking known_letters for valid input.  If unknown, it should be replaced with a _ in the info sent to the server.
-	# It is legal to be empty (though shouldn't do anything) and known_input should be false.
-	if known_input == "True":
-		if knownLetters == "":
+	# It is legal to be empty (though shouldn't do anything) and knownInput should be false.
+	if knownInput == "True":
+		if knownLettersInput == "":
 			return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
 		else:
 			regex = re.compile('[^a-zA-Z_]+|[\d]+')
-			if re.search(regex, knownLetters):
+			if re.search(regex, knownLettersInput):
 				return True, "Error: the known letters can only contain the letters a-z.", False
 			else:
 				# At this point, known letters consists of legal input a-z or _ if it is an unknown letter
 				regex = re.compile('[a-zA-Z]+')
-				result = re.search(regex, knownLetters)
-				if not re.search(regex, knownLetters):
+				result = re.search(regex, knownLettersInput)
+				if not re.search(regex, knownLettersInput):
 					return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
 				# Check if each of the known letters is in the letters given
-				for _ in knownLetters:
-					if _ is not '_' and _ not in raw_letters:
+				for _ in knownLettersInput:
+					if _ is not '_' and _ not in lettersInput:
 						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given.", False
-				# There should technically be a case here for "if letters were given but known_input is false" but making it so the letters are disregarded.
-	elif known_input not in ['True', 'False', '']:
+				# There should technically be a case here for "if letters were given but knownInput is false" but making it so the letters are disregarded.
+	elif knownInput not in ['True', 'False', '']:
 		return True, "...Are you messing with something you shouldn't be?  Either you know letters in the word, or you don't.", False
 
 	# At this point, everything is good
 	# This is necessary because Python bool() only checks the string is empty or not
-	if known_input == "True":
+	if knownInput == "True":
 		return False, "", True
 	else:
 		return False, "", False
+
+
+# Formats the input from the strings received in the request to proper formats.
+def formatInput(knownInput, numSpacesInput):
+	pass
+
+
+# Begins entire combination process (Formerly in main)
+def generateCombinations():
+	pass
 
 
 # Prints results, hopefully in columns, for easier reading.  Only for console version.
