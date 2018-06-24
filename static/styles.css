@@ -11,6 +11,14 @@ body {
 	margin-top: 0px;
 }
 
+a:link {
+	color: #41b2e2;
+}
+
+a:visited {
+    color: #3192e2;
+}
+
 button.reset {
   color: #e7e7e7;
   padding-left: 50px;
