@@ -20,14 +20,13 @@ def search():
 
 	invalid, invalidReason = invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput)
 	if invalid:
-		print(invalidReason)
 		return render_template('error.html', reason=invalidReason)
 
 	# Only do these after input has been checked
 	letters, numSpaces, known, knownLetters = formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput)
 	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
-	
+
 	return render_template('results.html', letters=lettersInput.lower(), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
 		nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
 		lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))
