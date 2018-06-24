@@ -24,8 +24,8 @@ def search():
 		return render_template('error.html', reason=invalidReason)
 
 	# Only do these after input has been checked
-	letters, numSpaces, known = formatInput(lettersInput, knownInput, numSpacesInput)
-	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLettersInput)
+	letters, numSpaces, known, knownLetters = formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput)
+	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
 	print("Total Count: " + str(totalCount) + " postFix: " + str(len(postfixResults)) + " nonPostFix: " + str(len(nonPostfixResults)) + " OddLetters: " + str(len(oddLetterResults)) + " lackingVowels: " + str(len(lackingVowelResults)))
 

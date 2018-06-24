@@ -75,13 +75,18 @@ li {
 
 #header {
 	color: #EFEBFF;
-	font-size: 2em;
+	font-size: 2.5em;
 	margin-top: 5px;
+}
+
+#probableHeader {
+	margin-top: 15px;
+	font-size: 1.5em;
 }
 
 #filteredHeader {
 	margin-top: 15px;
-	font-size: 1.5em;
+	font-size: 1em;
 }
 
 #note {
