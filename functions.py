@@ -5,7 +5,7 @@ import itertools
 import re
 import textwrap
 from math import ceil
-from word import softConsonants, startWithExceptions, illegalStartingVowelPairings, vowels, consonants, vowelExceptions, postfixes
+from word import softConsonants, startWithExceptions, illegalStartingVowelPairings, vowels, consonants, vowelExceptions, postfixes, hardConsonants, softConsonantPairsLegal
 
 
 # Begins entire combination process (Formerly in main)
@@ -49,8 +49,7 @@ def filterKnownLetters(solutions, knownLetters):
 	def buildRegularExpression():
 		expression = ""
 		for character in knownLetters:
-			# TODO: May want to make this less permissive - only _ for blanks
-			if character in ['', ' ', '.', ';', ',', '_']:
+			if character == '_':
 				expression += '.'
 			else:
 				expression += character.lower()
@@ -69,6 +68,29 @@ def filterKnownLetters(solutions, knownLetters):
 # Tries to filter words based on the beginning characters - most words will never start with certain
 # combinations of letters, though there are exceptions.
 def filterUnusualResults(solutions):
+	# This is to simplify the second else branch since there are so many conditions.
+	# Returns True if illegal, False if it is okay
+	def isIllegalStartingConsonant():
+		if word[0] == word[1]:
+			# Making an exception only for llamas
+			if len(word) == 5 and word == 'llama' or len(word) == 6 and word == 'llamas':
+				return False
+
+		# This is basically saying, if both 1-2 are in softConsonants
+		if word[0] in softConsonants and word[1] in softConsonants:
+			# No words starting with these letters followed by another consonant
+			if word[0] in ['h', 'l', 'y']:
+				return True
+			# There are no words starting with these letters and having a con
+			elif word[0:2] in softConsonantPairsLegal:
+				return False
+
+		# These are for very specific hard consonant pairings
+		elif word[0:2] in startWithExceptions:
+			return False
+
+		return True
+
 	trimmedSolutions = []
 	unlikelySolutions = []
 
@@ -82,10 +104,12 @@ def filterUnusualResults(solutions):
 		# Starts with consonant, if second character is a vowel or 'soft consonant', allow.
 		# Else, reject unless first two letters is in startsWithExceptions.
 		else:
-			if word[1] in vowels or word[1] in softConsonants or word[0:2] in startWithExceptions:
+			if word[1] in vowels or not isIllegalStartingConsonant():
 				trimmedSolutions.append(word)
 			else:
 				unlikelySolutions.append(word)
+
+
 	return trimmedSolutions, unlikelySolutions
 
 
@@ -181,7 +205,7 @@ def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 					return True, "Error: It was indicated that there were known letters, but no letters/positions were given."
 				# Check if each of the known letters is in the letters given
 				for _ in knownLettersInput:
-					if _ is not '_' and _.lower() not in lettersInput:
+					if _ is not '_' and _.lower() not in lettersInput.lower():
 						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given."
 				# There should technically be a case here for "if letters were given but knownInput is false" but making it so the letters are disregarded.
 	elif knownInput not in ['True', 'False', '']:
