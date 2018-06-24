@@ -148,64 +148,66 @@ def filterUnusualResults(solutions):
 def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 	# Checking letter input for non-letter input
 	if lettersInput == "":
-		return True, "Error: No letters given to search.", False
+		return True, "Error: No letters given to search."
 	elif len(lettersInput) < 3:
-		return True, "Error: This tool was only designed for words of at least length 3.", False
+		return True, "Error: This tool was only designed for words of at least length 3."
 	else:
 		regex = re.compile('[^a-zA-Z]+')
 		if re.search(regex, lettersInput):
-			return True, "Error: Invalid input detected in letters.  Must be letters a-z only.", False
+			return True, "Error: Invalid input detected in letters.  Must be letters a-z only."
 
 	# Checking numSpacesInput for numeric input only
 	if numSpacesInput == "":
-		return True, "Error: Length of word to search for was not given.", False
+		return True, "Error: Length of word to search for was not given."
 	else:
 		regex = re.compile('[^0-9]+')
 		if re.search(regex, numSpacesInput):
-			return True, "Error: Invalid input detected in number of letters.  Must be numeric digits, 0-9 only.", False
+			return True, "Error: Invalid input detected in number of letters.  Must be numeric digits, 0-9 only."
 		elif int(numSpacesInput) == 0:
-			return True, "Error: The word you are searching for has a length of 0.", False
+			return True, "Error: The word you are searching for has a length of 0."
 		elif int(numSpacesInput) in range(1,3):
-			return True, "Error: This tool was only designed for words of at least length 3.", False
+			return True, "Error: This tool was only designed for words of at least length 3."
 
 	# Checking known_letters for valid input.  If unknown, it should be replaced with a _ in the info sent to the server.
 	# It is legal to be empty (though shouldn't do anything) and knownInput should be false.
 	if knownInput == "True":
 		if knownLettersInput == "":
-			return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
+			return True, "Error: It was indicated that there were known letters, but no letters/positions were given."
 		else:
 			regex = re.compile('[^a-zA-Z_]+|[\d]+')
 			if re.search(regex, knownLettersInput):
-				return True, "Error: the known letters can only contain the letters a-z.", False
+				return True, "Error: the known letters can only contain the letters a-z."
 			else:
 				# At this point, known letters consists of legal input a-z or _ if it is an unknown letter
 				regex = re.compile('[a-zA-Z]+')
 				result = re.search(regex, knownLettersInput)
 				if not re.search(regex, knownLettersInput):
-					return True, "Error: It was indicated that there were known letters, but no letters/positions were given.", False
+					return True, "Error: It was indicated that there were known letters, but no letters/positions were given."
 				# Check if each of the known letters is in the letters given
 				for _ in knownLettersInput:
 					if _ is not '_' and _ not in lettersInput:
-						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given.", False
+						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given."
 				# There should technically be a case here for "if letters were given but knownInput is false" but making it so the letters are disregarded.
 	elif knownInput not in ['True', 'False', '']:
-		return True, "...Are you messing with something you shouldn't be?  Either you know letters in the word, or you don't.", False
+		return True, "...Are you messing with something you shouldn't be?  Either you know letters in the word, or you don't."
 
 	# At this point, everything is good
-	# This is necessary because Python bool() only checks the string is empty or not
-	if knownInput == "True":
-		return False, "", True
-	else:
-		return False, "", False
+	return False, ""
 
 
 # Formats the input from the strings received in the request to proper formats.
-def formatInput(knownInput, numSpacesInput):
-	pass
+def formatInput(lettersInput, knownInput, numSpacesInput):
+	letters = list(lettersInput.lower())
+	# This is necessary because Python bool() only checks the string is empty or not
+	if knownInput == "True":
+		known = True
+	else:
+		known = False
+	return letters, int(numSpacesInput), known
 
 
 # Begins entire combination process (Formerly in main)
-def generateCombinations():
+def generateCombinations(lettersInput, numSpaces, known, knownLettersInput):
 	pass
 
 

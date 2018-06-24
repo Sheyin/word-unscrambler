@@ -18,32 +18,28 @@ def search():
 	knownInput = request.args.get('known', '')
 	knownLettersInput = request.args.get('knownLetters', '')
 
-	invalid, invalidReason, known = invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput)
+	invalid, invalidReason = invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput)
 	if invalid:
 		print(invalidReason)
 		return render_template('error.html', reason=invalidReason)
 
 	# Only do these after input has been checked
-	num_spaces = int(numSpacesInput)
-
-	formatInput(knownInput, numSpacesInput)
-	generateCombinations()
+	letters, numSpaces, known = formatInput(lettersInput, knownInput, numSpacesInput)
+	generateCombinations(lettersInput, numSpaces, known, knownLettersInput)
 
 	solutions = []
-
-	letters = list(lettersInput.lower())
 
 	# Check if these letters are a subset of the list of letters, then display combinations
 	for combination in word.postfixes:
 		if postfixIsInLetterPool(copy(letters), combination):
-			solutions += unscramble(copy(letters), combination, num_spaces, solutions)
+			solutions += unscramble(copy(letters), combination, numSpaces, solutions)
 
 	if known:
 		solutions = filterKnownLetters(solutions, knownLettersInput)
 
 	filteredSolutions = []
 	solutions, filteredSolutions = filterUnusualResults(solutions)
-	if num_spaces > 4:
+	if numSpaces > 4:
 		solutions, filteredSolutions = filterResultsLackingVowels(solutions)
 	# sort() didn't seem to work, but sorted() does - requires a new variable though
 	sortedSolutions = sorted(solutions, key=str.lower)
