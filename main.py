@@ -27,8 +27,7 @@ def search():
 	letters, numSpaces, known, knownLetters = formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput)
 	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
-	print("Total Count: " + str(totalCount) + " postFix: " + str(len(postfixResults)) + " nonPostFix: " + str(len(nonPostfixResults)) + " OddLetters: " + str(len(oddLetterResults)) + " lackingVowels: " + str(len(lackingVowelResults)))
-
+	
 	return render_template('results.html', letters=lettersInput.lower(), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
 		nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
 		lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))

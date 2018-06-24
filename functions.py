@@ -87,7 +87,6 @@ def filterUnusualResults(solutions):
 		# These are for very specific hard consonant pairings
 		elif word[0:2] in startWithExceptions:
 			return False
-
 		return True
 
 	trimmedSolutions = []
@@ -107,8 +106,6 @@ def filterUnusualResults(solutions):
 				trimmedSolutions.append(word)
 			else:
 				unlikelySolutions.append(word)
-
-
 	return trimmedSolutions, unlikelySolutions
 
 
@@ -224,74 +221,3 @@ def formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput):
 		known = False
 
 	return letters, int(numSpacesInput), known, knownLettersInput.lower()
-
-
-
-# These methods below are deprecated and will probably get deleted
-'''
-# Letters: the pool of letters to choose from
-# Subset: a detected combination of letters to exclude from the pool and build combinations upon
-# Spaces: length of the word to find
-# Solutions: List of results to be appended to, with results from this function running w/ other postfixes
-# How this works is that it looks at the pool of letters as a set ('letters').  If the 'postfix'
-# (here, 'subset) is in this pool, it removes the letters from the pool, then determines combinations
-# ('permutations', combinations is probably the more appropriate term though) of the remaining letters,
-# affixing the postfix onto each combination.
-# So for example, letters 'stamp' - subset 'amp' - removes 'amp' leaving 'st' as the remaining letters.
-# It would determine two combinations - st and ts - and append 'amp' to each, returning a list with
-# 'stamp' and 'tsamp' as the results.
-def unscramble(letters, subset, spaces, solutions):
-    numLettersToRemove = len(letters) - spaces
-    solution = []
-    # Remove the first instance of each letter of subset from the pool
-    for character in subset:
-        letters.remove(character)
-
-    # If there is only 1 s, and it is being used in the subset, then skip the plural
-    # AND make sure it obeys the # of spaces requested
-    if ('s' not in subset and letters.count('s') >= 1) or ('s' in subset and letters.count('s') >= 2):
-        pluralLetters = copy(letters)
-        pluralLetters.remove('s')
-        pluralResults = itertools.permutations(pluralLetters)
-
-        for pluralPermutation in pluralResults:
-            pluralCombination = ''.join(pluralPermutation) + subset
-            pluralCombination = pluralCombination[numLettersToRemove:]
-            pluralCombination += 's'
-
-            if pluralCombination not in solution and pluralCombination not in solutions:
-                solution.append(pluralCombination)
-
-    results = itertools.permutations(letters)
-
-    for permutation in results:
-        combination = ''.join(permutation) + subset
-        combination = combination[numLettersToRemove:]
-        if combination not in solution:
-            solution.append(combination)
-    return solution
-
-
-# This checks to see if the letters of the postfix ('subset') are in the pool of letters ('letters')
-# It returns false upon detecting a letter is not present in the pool, so the calling method
-# doesn't attempt to unscramble using this postfix.  Otherwise, it will return true allowing it to run.
-def postfixIsInLetterPool(letters, subset):
-    for _ in subset:
-        try:
-            letters.remove(_)
-        except ValueError:
-            return False
-    else:
-        return True
-
-# Prints results, hopefully in columns, for easier reading.  Only for console version.
-def printResults(solutions):
-    columnCounter = 1
-    for text in solutions:
-        if columnCounter % 4 == 0:
-            print("   " + text)
-        else:
-            print("   " + text, end='')
-        columnCounter += 1
-
-'''
