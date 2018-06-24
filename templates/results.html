@@ -1,17 +1,46 @@
 <!doctype html>
-<title>Results for {{ letters }}</title>
+<title>Results for {{letters}} - {{totalCount}} total possible combinations</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
 <div id="imageAndMain">
 	<div id="mainContent">
-		{% if solutions %}
-			<div id="header">{{numResults}} results found for {{ letters }}:</div>
-			<p id="note">This is a partial list of possible results - it's up to you to figure out the answer.</p>
+		<div id="header">{{totalCount}} combinations found for {{letters}}:</div>
+		<p id="note">These have been categorized from most likely to least likely words.</p>
+
+		{% if postfixResults %}
+			<div id="filteredHeader">{{postfixCount}} probable results:</div>
+			<p id="note">These are the most likely results, based on how the word ends.</p>
 
 			<div id="columnWrapper">
 				<table id="solutionsWrapper">
 					<tr>
-					{%- for column in solutions|slice(10) %}
+					{%- for column in postfixResults|slice(10) %}
+						<td>
+							<table id = "solutions">
+								{%- for word in column %}
+									<tr><td class="{{ loop.cycle('odd', 'even') }}">{{word}}</td></tr>
+								{%- endfor %}
+							</table>
+						</td>
+					{%- endfor %}
+					</tr>
+				</table>
+			</div>
+
+			{% else %}
+			<div id="header">No probable results found for {{letters}}.</div>
+			<p id="note">This may be a false negative.  Look through the other results below.</p>
+		{% endif %}
+
+
+		{% if nonPostfixResults %}
+			<div id="filteredHeader">{{nonPostfixCount}} results found that do not end in a known postfix:</div>
+			<p id="note">These do not end in predefined postfixes.</p>
+
+			<div id="columnWrapper">
+				<table id="solutionsWrapper">
+					<tr>
+					{%- for column in nonPostfixResults|slice(10) %}
 						<td>
 							<table id = "solutions">
 								{%- for word in column %}
@@ -23,20 +52,40 @@
 					</tr>
 				</table>
 			</div>
-
-
-			{% else %}
-			<h1>No results found for {{ letters }}.</h1>
 		{% endif %}
 
-		{% if filteredSolutions %}
-		<div id="filteredHeader">{{numFiltered}} unlikely results were filtered out:</div>
-		<p id="note">These lack a vowel in the first half of the word or start with unusual consonant pairings.</p>
+
+		{% if oddLetterResults %}
+		<div id="filteredHeader">{{oddLetterCount}} results were filtered due to starting with odd letters:</div>
+		<p id="note">These are unlikely because they start with odd letter combinations.</p>
 
 		<div id="columnWrapper">
 			<table id="solutionsWrapper">
 				<tr>
-				{%- for column in filteredSolutions|slice(10) %}
+				{%- for column in oddLetterResults|slice(10) %}
+					<td>
+						<table id = "solutions">
+							{%- for word in column %}
+								<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
+							{%- endfor %}
+						</table>
+					</td>
+				{%- endfor %}
+				</tr>
+			</table>
+		</div>
+
+		{% endif %}
+
+
+		{% if lackingVowelResults %}
+		<div id="filteredHeader">{{lackingVowelCount}} results were filtered due to lacking vowels:</div>
+		<p id="note">These are unlikely because they do not have a vowel in the first half of the combination.</p>
+
+		<div id="columnWrapper">
+			<table id="solutionsWrapper">
+				<tr>
+				{%- for column in lackingVowelResults|slice(10) %}
 					<td>
 						<table id = "solutions">
 							{%- for word in column %}

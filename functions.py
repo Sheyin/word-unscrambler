@@ -5,7 +5,7 @@ import itertools
 import re
 import textwrap
 from math import ceil
-from word import softConsonants, startWithExceptions, illegalStartingVowelPairings, vowels, consonants, vowelExceptions
+from word import softConsonants, startWithExceptions, illegalStartingVowelPairings, vowels, consonants, vowelExceptions, postfixes
 
 # Letters: the pool of letters to choose from
 # Subset: a detected combination of letters to exclude from the pool and build combinations upon
@@ -207,8 +207,52 @@ def formatInput(lettersInput, knownInput, numSpacesInput):
 
 
 # Begins entire combination process (Formerly in main)
-def generateCombinations(lettersInput, numSpaces, known, knownLettersInput):
-	pass
+# Multiple lists are being returned so they can all be displayed on a page with reason for filtering.
+def generateCombinations(letters, numSpaces, known, knownLetters):
+	allResults = []
+	allCombinations = itertools.permutations(letters)
+	for _ in allCombinations:
+		combination = ''.join(_)
+		# Filtering some duplicates caused by multiple copies of a letter
+		if combination not in allResults:
+			allResults.append(combination)
+
+	if known:
+		allResults = filterKnownLetters(allResults, knownLetters)
+
+	# Filters out results starting with odd letter combinations
+	filteredResults, oddLetterResults = filterUnusualResults(allResults)
+
+	lackingVowelsResults = []
+
+	# Filters out results lacking vowels in the first half of the word
+	if numSpaces > 4:
+		filteredResults, lackingVowelsResults = filterResultsLackingVowels(filteredResults)
+
+	# Filters out results not ending in the list of postfixes defined in word.py
+	postfixResults, nonPostfixResults = filterNonPostfixCombinations(filteredResults)
+
+	return sorted(postfixResults, key=str.lower), sorted(nonPostfixResults, key=str.lower), sorted(oddLetterResults, key=str.lower), sorted(lackingVowelsResults, key=str.lower)
+
+
+# Combinations that don't fit the "known postfixes" in words.py will be put into a seperate list
+def filterNonPostfixCombinations(solutions):
+	matchedResults = []
+	unmatchedResults = []
+	matched = False
+	# For each postfix, if the postfix matches the ending of the word, then move to results list
+	for combination in solutions:
+		for ending in postfixes:
+			regex = re.compile(ending + '$')
+			if not matched and re.search(regex, combination):
+				# The last few letters matched something in postfixes
+				matched = True
+		if matched:
+			matchedResults.append(combination)
+		else:
+			unmatchedResults.append(combination)
+		matched = False
+	return matchedResults, unmatchedResults
 
 
 # Prints results, hopefully in columns, for easier reading.  Only for console version.

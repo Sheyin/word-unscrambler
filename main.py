@@ -25,24 +25,10 @@ def search():
 
 	# Only do these after input has been checked
 	letters, numSpaces, known = formatInput(lettersInput, knownInput, numSpacesInput)
-	generateCombinations(lettersInput, numSpaces, known, knownLettersInput)
+	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLettersInput)
+	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
+	print("Total Count: " + str(totalCount) + " postFix: " + str(len(postfixResults)) + " nonPostFix: " + str(len(nonPostfixResults)) + " OddLetters: " + str(len(oddLetterResults)) + " lackingVowels: " + str(len(lackingVowelResults)))
 
-	solutions = []
-
-	# Check if these letters are a subset of the list of letters, then display combinations
-	for combination in word.postfixes:
-		if postfixIsInLetterPool(copy(letters), combination):
-			solutions += unscramble(copy(letters), combination, numSpaces, solutions)
-
-	if known:
-		solutions = filterKnownLetters(solutions, knownLettersInput)
-
-	filteredSolutions = []
-	solutions, filteredSolutions = filterUnusualResults(solutions)
-	if numSpaces > 4:
-		solutions, filteredSolutions = filterResultsLackingVowels(solutions)
-	# sort() didn't seem to work, but sorted() does - requires a new variable though
-	sortedSolutions = sorted(solutions, key=str.lower)
-	sortedFilteredSolutions = sorted(filteredSolutions, key=str.lower)
-
-	return render_template('results.html', numResults=len(solutions), letters=lettersInput, solutions=sortedSolutions, filteredSolutions=sortedFilteredSolutions, numFiltered=len(filteredSolutions))
+	return render_template('results.html', letters=lettersInput, totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
+		nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
+		lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))
