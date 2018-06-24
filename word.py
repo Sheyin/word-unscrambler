@@ -21,7 +21,7 @@ postfixes = ["act", "alpha",
 			"se", "sh", "ss", "st", "sy",
 			"ta", "te", "th", "ty",
 			"ub", "ue", "um", "un", "up", "ur", "us", "ut",
-			"ve", "vy", "we", "ye"]
+			"ve", "vy", "we", "wl", "ye"]
 
 
 

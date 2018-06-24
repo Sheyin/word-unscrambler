@@ -12,7 +12,7 @@ from word import softConsonants, startWithExceptions, illegalStartingVowelPairin
 # Multiple lists are being returned so they can all be displayed on a page with reason for filtering.
 def generateCombinations(letters, numSpaces, known, knownLetters):
 	allResults = []
-	allCombinations = itertools.permutations(letters)
+	allCombinations = itertools.permutations(letters, numSpaces)
 	for _ in allCombinations:
 		combination = ''.join(_)
 		# Filtering some duplicates caused by multiple copies of a letter
