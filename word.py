@@ -20,17 +20,17 @@ postfixes = ["act", "alpha",
             "ra", "rd", "re", "rg", "rl", "rn", "ry", "rt",
 			"se", "sh", "ss", "st", "sy",
 			"ta", "te", "th", "ty",
-			"ub", "ue", "um", "un", "up", "ur", "us", "ut",
+			"ub", "ud", "ue", "um", "un", "up", "ur", "us", "ut",
 			"ve", "vy", "we", "wl", "ye"]
 
 
 
 # Allowed to start with any vowel, or vowel + consonant
 # Or any constant + c, r, l, h, y, t, in second space
-softConsonants = ['c', 'h', 'l', 'r', 's', 't', 'w', 'y']
+softConsonants = ['c', 'h', 'l', 'n', 'r', 's', 't', 'w', 'y']
 hardConsonants = ['b', 'd', 'f', 'g', 'j', 'k', 'm', 'n', 'p', 'q', 'v', 'x', 'z']
 startWithExceptions = ['kn', 'ps', 'sp']
-softConsonantPairsLegal = ['ch', 'cl', 'cr', 'cy', 'rh', 'ry', 'sc', 'sh', 'sl', 'st', 'sw', 'th', 'tr', 'tw', 'ty', 'wh', 'wr']
+softConsonantPairsLegal = ['ch', 'cl', 'cr', 'cy', 'rh', 'ry', 'sc', 'sh', 'sl', 'sn', 'st', 'sw', 'th', 'tr', 'tw', 'ty', 'wh', 'wr']
 #legalStartingVowelPairings = ["aa", "ai", "au", "ea", "ee", "eo", "eu", "oa", "oi", "oo", "ou"]
 illegalStartingVowelPairings = ["ae", "ao", "ei", "eo", "ia", "ie", "ii", "io", "iu", "oe", "ua", "ue", "ui", "uo", "uu"]
 

@@ -79,7 +79,7 @@ def filterUnusualResults(solutions):
 		# This is basically saying, if both 1-2 are in softConsonants
 		if word[0] in softConsonants and word[1] in softConsonants:
 			# No words starting with these letters followed by another consonant
-			if word[0] in ['h', 'l', 'y']:
+			if word[0] in ['h', 'l', 'n', 'y']:
 				return True
 			elif word[0:2] in softConsonantPairsLegal:
 				return False
