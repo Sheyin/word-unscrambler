@@ -84,6 +84,10 @@ def filterUnusualResults(solutions):
 			elif word[0:2] in softConsonantPairsLegal:
 				return False
 
+		# There's probably some amount of exceptions to this....
+		elif word[0] in hardConsonants and word[1] in softConsonants:
+			return False
+
 		# These are for very specific hard consonant pairings
 		elif word[0:2] in startWithExceptions:
 			return False
@@ -95,7 +99,7 @@ def filterUnusualResults(solutions):
 	for word in solutions:
 		# If starts with vowel, allow all but words starting with certain vowel-vowel pairings.
 		if word[0] in vowels:
-			if word[1] in vowels and word[0:2] in illegalStartingVowelPairings:
+			if word[0:2] in illegalStartingVowelPairings:
 				unlikelySolutions.append(word)
 			else:
 				trimmedSolutions.append(word)

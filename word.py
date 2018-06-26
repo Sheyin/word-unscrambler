@@ -17,7 +17,7 @@ postfixes = ["act", "alpha",
             "ma", "mb", "me", "mp", "na", "nd", "ne", "ng", "nk", "nt", "ny",
             "oc", "od", "oe", "og", "ol", "om", "on", "oo", "op", "or", "ot", "ow", "ox",
             "py",
-            "ra", "rd", "re", "rg", "rl", "rn", "ry", "rt",
+            "ra", "rb", "rd", "re", "rg", "rl", "rn", "ry", "rt",
 			"se", "sh", "ss", "st", "sy",
 			"ta", "te", "th", "ty",
 			"ub", "ud", "ue", "um", "un", "up", "ur", "us", "ut",
@@ -32,7 +32,8 @@ hardConsonants = ['b', 'd', 'f', 'g', 'j', 'k', 'm', 'n', 'p', 'q', 'v', 'x', 'z
 startWithExceptions = ['kn', 'ps', 'sp']
 softConsonantPairsLegal = ['ch', 'cl', 'cr', 'cy', 'rh', 'ry', 'sc', 'sh', 'sl', 'sn', 'st', 'sw', 'th', 'tr', 'tw', 'ty', 'wh', 'wr']
 #legalStartingVowelPairings = ["aa", "ai", "au", "ea", "ee", "eo", "eu", "oa", "oi", "oo", "ou"]
-illegalStartingVowelPairings = ["ae", "ao", "ei", "eo", "ia", "ie", "ii", "io", "iu", "oe", "ua", "ue", "ui", "uo", "uu"]
+# Adding in a few -h ones as well - may as well since it is the same check
+illegalStartingVowelPairings = ["ae", "ao", "eh", "ei", "eo", "ia", "ie", "ih", "ii", "io", "iu", "oe", "oh", "ua", "ue", "uh", "ui", "uo", "uu"]
 
 # TODO: There should be an exception list for greek letters since they aren't really postfixes but show up commonly.
 # They would also only be exact matches, never partial. ex. alpha, lambda, tau, etc.
