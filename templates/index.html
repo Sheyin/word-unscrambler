@@ -12,8 +12,8 @@
 		<p>
 			<form action = "/search" method="get">
 			<ul type= "disc">
-				<li>Letters to unscramble: <input type="text" name="letters" maxlength="10" size="4" id="letters">
-				<li>Length of the word to find: <input type="text" name="length" maxlength="2" size="1" onchange="resetPartial()" id="length">
+				<li>Letters to unscramble: <input type="text" name="letters" maxlength="10" size="6" id="letters">
+				<li>Length of the word to find: <input type="text" name="length" maxlength="2" size="3" onchange="resetPartial()" id="length">
 				<li>Are there any <span title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know." id="whatisthis">known letters</span>?:
 					<input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='knownLetters'>Yes
 					<input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='unknownLetters' checked>No
