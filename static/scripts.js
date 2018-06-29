@@ -8,7 +8,7 @@ function getKnownLetters(knownNode) {
 		var letterBlanks = '';
 		for (i=0; i<length; i++) {
 			idName = 'letter' + i;
-			letterBlanks += ' <input type="text" name=idName class="knownInput" maxlength="1" size="1" /> '
+			letterBlanks += ' <input type="text" name=idName class="knownInput" maxlength="1" size="3" /> '
 		}
 		var formText = 'What letters are known?: <br>' + letterBlanks + '<br>';
 		document.getElementById('knownLetterEntry').innerHTML=formText;

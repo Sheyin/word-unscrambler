@@ -65,6 +65,11 @@ li {
 	padding-bottom: 1px;
 }
 
+input[type="text"]
+{
+    font-size:12px;
+}
+
 #whatisthis {
 	color: #41b2e2;
 }
