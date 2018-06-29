@@ -8,7 +8,7 @@ function getKnownLetters(knownNode) {
 		var letterBlanks = '';
 		for (i=0; i<length; i++) {
 			idName = 'letter' + i;
-			letterBlanks += ' <input type="text" name=idName class="knownInput" maxlength="1" size="3" /> '
+			letterBlanks += ' <input type="text" name=idName class="knownLetterEntry" maxlength="1" size="3" /> '
 		}
 		var formText = 'What letters are known?: <br>' + letterBlanks + '<br>';
 		document.getElementById('knownLetterEntry').innerHTML=formText;
@@ -33,7 +33,7 @@ function packageAndSubmit() {
 
 // This reads each of the "known" letters and packages them into an array to be sent with the request.
 function bundleKnownLetters() {
-	var knownSpaces = document.getElementsByClassName('knownInput');
+	var knownSpaces = document.getElementsByClassName('knownLetterEntry');
 	for (i=0; i<document.getElementById('length').value; i++) {
 		knownLetters = document.getElementById('knownLettersBox');
 		if (knownSpaces[i].value == '') {
