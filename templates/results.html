@@ -11,7 +11,7 @@
 			<div id="probableHeader">{{postfixCount}} probable results:</div>
 			<p id="note">These are the most likely results, based on how the word ends.</p>
 
-			<div id="columnWrapper">
+			<div id="columnWrapper" class="notranslate">
 				<table id="solutionsWrapper">
 					<tr>
 					{%- for column in postfixResults|slice(10) %}
@@ -37,7 +37,7 @@
 			<div id="filteredHeader">{{nonPostfixCount}} results found that do not end in a known postfix:</div>
 			<p id="note">These do not end in predefined postfixes.</p>
 
-			<div id="columnWrapper">
+			<div id="columnWrapper" class="notranslate">
 				<table id="solutionsWrapper">
 					<tr>
 					{%- for column in nonPostfixResults|slice(10) %}
@@ -59,7 +59,7 @@
 		<div id="filteredHeader">{{oddLetterCount}} results were filtered due to starting with odd letters:</div>
 		<p id="note">These are unlikely because they start with odd letter combinations.</p>
 
-		<div id="columnWrapper">
+		<div id="columnWrapper" class="notranslate">
 			<table id="solutionsWrapper">
 				<tr>
 				{%- for column in oddLetterResults|slice(10) %}
@@ -82,7 +82,7 @@
 		<div id="filteredHeader">{{lackingVowelCount}} results were filtered due to lacking vowels:</div>
 		<p id="note">These are unlikely because they do not have a vowel in the first half of the combination.</p>
 
-		<div id="columnWrapper">
+		<div id="columnWrapper" class="notranslate">
 			<table id="solutionsWrapper">
 				<tr>
 				{%- for column in lackingVowelResults|slice(10) %}
