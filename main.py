@@ -18,12 +18,17 @@ def search():
 	knownInput = request.args.get('known', '')
 	knownLettersInput = request.args.get('knownLetters', '')
 
+	print("Received: ")
+	print("Letters: " + lettersInput + " numSpaces: " + numSpacesInput + " knownInput: " + knownInput + " knownLettersInput: " + knownLettersInput)
+
 	invalid, invalidReason = invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput)
 	if invalid:
 		return render_template('error.html', reason=invalidReason)
 
 	# Only do these after input has been checked
 	letters, numSpaces, known, knownLetters = formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput)
+	print("After formatting:")
+	print("Letters: " + str(letters) + " numSpaces: " + str(numSpaces) + " known: " + str(known) + " knownLetters: " + str(knownLetters))
 	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
 

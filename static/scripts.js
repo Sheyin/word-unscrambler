@@ -19,6 +19,18 @@ function getKnownLetters(knownNode) {
 	}
 }
 
+
+// Gets the form information and submits the form
+function packageAndSubmit() {
+	var knownLettersRadio = document.getElementById("lettersKnownTrue");
+	// Only get the known letters if user has marked "True"
+	if (knownLettersRadio.checked) {
+		bundleKnownLetters();
+	}
+	submitForm();
+}
+
+
 // This reads each of the "known" letters and packages them into an array to be sent with the request.
 function bundleKnownLetters() {
 	var knownSpaces = document.getElementsByClassName('knownInput');
@@ -32,8 +44,7 @@ function bundleKnownLetters() {
 		}
 		// When done reading each space, should set it to "disabled" so it is not sent in the request.
 		// But it's not quite working.
-		// knownLetters.innerHTML = ' <input type="text" name=idName class="knownInput" maxlength="1" size="1" disabled /> '
-
+		knownSpaces[i].innerHTML = ' '
 	}
 }
 
@@ -43,8 +54,8 @@ function resetForm() {
 	//writeCookie(document.getElementById('letters').value);
 	document.getElementById('letters').value = '';
 	document.getElementById('length').value = '';
-	document.getElementById('unknownLetters').checked = true;
-	document.getElementById('knownLetters').checked = false;
+	document.getElementById('lettersKnownFalse').checked = true;
+	document.getElementById('lettersKnownTrue').checked = false;
 	document.getElementById('knownLetterEntry').innerHTML = '';
 	document.getElementById('knownLettersBox').value = '';
 }
@@ -53,8 +64,8 @@ function resetForm() {
 // If the length changes, validate input and reset the "known letters"
 function resetPartial() {
 	checkLength();
-	document.getElementById('unknownLetters').checked = true;
-	document.getElementById('knownLetters').checked = false;
+	document.getElementById('lettersKnownFalse').checked = true;
+	document.getElementById('lettersKnownTrue').checked = false;
 	document.getElementById('knownLetterEntry').innerHTML = '';
 	document.getElementById('knownLettersBox').value = '';
 }
@@ -70,6 +81,13 @@ function checkLength() {
 	if (lengthGiven > lengthString) {
 		document.getElementById('length').value = lengthString;
 	}
+}
+
+
+// This allows the form to be submitted by the new buttons
+function submitForm() {
+	// $('form').serialize()
+	document.getElementById("inputForm").submit();
 }
 
 // This function is not implemented yet - just copied some older code to use as a blueprint

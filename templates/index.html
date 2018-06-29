@@ -1,5 +1,8 @@
 <!doctype html>
-<title>Unscrambling letters</title>
+<head>
+	<title>Unscrambling letters</title>
+	<link rel="shortcut icon" href="#" />
+</head>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 <meta name="robots" content="noindex,nofollow">
@@ -13,19 +16,22 @@
 		<p id="note">This is a tool to unscramble words given a pool of letters.  It is a work in progress.</p>
 
 		<p>
-			<form action = "/search" method="get">
+			<form action = "/search" method="get" id="inputForm">
 			<ul type= "disc">
-				<li>Letters to unscramble: <input type="text" name="letters" maxlength="9" size="12" id="letters">
+				<li>Letters to unscramble: <input type="text" name="letters" maxlength="9" size="9" id="letters">
 				<li>Length of the word to find: <input type="text" name="length" maxlength="1" size="3" onchange="resetPartial()" id="length">
 				<li>Are there any <span title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know." id="whatisthis">known letters</span>?:
-					<input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='knownLetters'>Yes
-					<input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='unknownLetters' checked>No
+					<input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='lettersKnownTrue'>Yes
+					<input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='lettersKnownFalse' checked>No
 					<input type="hidden" name="knownLetters" default="" id="knownLettersBox">
 			</ul>
 			<div id="knownLetterEntry"></div>
 
-			<input type="submit" value="Submit" onclick="bundleKnownLetters()" id="submitButton">
-			<button type="button" onclick="resetForm()" id="reset">Clear Form</button>
+			<div class="buttons">
+			<a href="#" class="button-submit" id="submit_button" onclick="packageAndSubmit()">Submit</a>
+			<a href="#" class="button-reset" id="reset_button" onclick="resetForm()">Clear Form</a>
+			</div>
+
 			</form>
 		</p>
 
