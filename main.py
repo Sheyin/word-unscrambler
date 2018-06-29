@@ -27,6 +27,6 @@ def search():
 	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
 
-	return render_template('results.html', letters=lettersInput.lower(), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
+	return render_template('results.html', letters=''.join(letters), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
 		nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
 		lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))

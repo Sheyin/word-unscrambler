@@ -172,6 +172,10 @@ def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 	elif len(lettersInput) < 3:
 		return True, "Error: This tool was only designed for words of at least length 3."
 	else:
+		# iOS sometimes adds an extra space to the end of input
+		# Disregard the extra space and remove it during formatInput
+		if lettersInput[-1] == " ":
+			lettersInput = lettersInput[:-1]
 		regex = re.compile('[^a-zA-Z]+')
 		if re.search(regex, lettersInput):
 			return True, "Error: Invalid input detected in letters.  Must be letters a-z only."
@@ -217,6 +221,10 @@ def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 
 # Formats the input from the strings received in the request to the proper formats
 def formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput):
+	# iOS sometimes adds an extra space to the end of input
+	# Remove the extra space before processing
+	if lettersInput[-1] == " ":
+		lettersInput = lettersInput[:-1]
 	letters = list(lettersInput.lower())
 	# This is necessary because Python bool() only checks the string is empty or not
 	if knownInput == "True":
