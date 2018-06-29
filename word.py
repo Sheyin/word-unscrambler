@@ -1,6 +1,6 @@
 # List of prefixes/postfixes to check against
 
-postfixes = ["act", "alpha",
+postfixes = ["act", "alpha", "ato",
             "che",
             "eek", "eep", "egg", "ewd",
 			"ght",
