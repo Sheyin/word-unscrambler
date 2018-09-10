@@ -1,21 +1,15 @@
-<!doctype html>
-<head>
-	<title>Unscrambling letters</title>
-	<link rel="shortcut icon" href="#" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-	<script src="{{ url_for('static', filename='scripts.js') }}"></script>
-	<meta name="robots" content="noindex,nofollow" />
-</head>
+{% extends "template.html" %}
 
+{% block content %}
+	<div id="header">Unscrambling letters</div>
 
-<div id="imageAndMain">
-	<div id="mainContent">
-		<div id="header">Unscrambling letters</div>
+	<p id="note">This is a tool to unscramble words given a pool of letters.  After filling out the
+	fields below, it will generate a list of results, some of which will be identified as most likely
+	being a word.  If it has deemed unlikely to be a word, it will tell you why, but all possible
+	combinations will be shown.</p>
 
-		<p id="note">This is a tool to unscramble words given a pool of letters.  It is a work in progress.</p>
-
-		<p>
-			<form action = "/search" method="get" id="inputForm">
+	<p>
+		<form action = "/search" method="get" id="inputForm">
 			<ul type= "disc">
 				<li>Letters to unscramble: <input type="text" name="letters" maxlength="9" size="9" id="letters">
 				<li>Length of the word to find: <input type="text" name="length" maxlength="1" size="3" onchange="resetPartial()" id="length">
@@ -30,13 +24,10 @@
 			<a href="#" class="button-submit" id="submit_button" onclick="packageAndSubmit()">Submit</a>
 			<a href="#" class="button-reset" id="reset_button" onclick="resetForm()">Clear Form</a>
 			</div>
+		</form>
+	</p>
 
-			</form>
-		</p>
-
-		<P>
-			<div id="note">Source code can be found <a href="https://github.com/Sheyin/word-unscrambler">here</a>.</div>
-		</p>
-
-	</div>
-</div>
+	<P>
+		<div id="note">Source code can be found <a href="https://github.com/Sheyin/word-unscrambler">here</a>.</div>
+	</p>
+{% endblock %}

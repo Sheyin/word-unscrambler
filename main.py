@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def start():
-	return render_template('index.html')
+	return render_template('index.html', title="Search for a word")
 
 @app.route('/search', methods=['GET'])
 def search():
@@ -23,7 +23,7 @@ def search():
 
 	invalid, invalidReason = invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput)
 	if invalid:
-		return render_template('error.html', reason=invalidReason)
+		return render_template('error.html', title="Error!", reason=invalidReason)
 
 	# Only do these after input has been checked
 	letters, numSpaces, known, knownLetters = formatInput(lettersInput, knownInput, numSpacesInput, knownLettersInput)
@@ -32,6 +32,6 @@ def search():
 	postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(letters, numSpaces, known, knownLetters)
 	totalCount = len(postfixResults) + len(nonPostfixResults) + len(oddLetterResults) + len(lackingVowelResults)
 
-	return render_template('results.html', letters=''.join(letters), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
+	return render_template('results.html', title="Results for '" + ''.join(letters) + "'", letters=''.join(letters), totalCount= totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
 		nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
 		lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))

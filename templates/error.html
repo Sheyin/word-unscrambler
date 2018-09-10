@@ -1,12 +1,8 @@
-<!doctype html>
-<title>Error!</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% extends "template.html" %}
 
-<div id="imageAndMain">
-	<div id="mainContent">
-		<div id="header">Something went wrong!</div>
-		<p>
-		{{reason}}
-		</p>
-	</div>
-</div>
+{% block content %}
+	<div id="header">Something went wrong!</div>
+	<p>
+	{{reason}}
+	</p>
+{% endblock %}
