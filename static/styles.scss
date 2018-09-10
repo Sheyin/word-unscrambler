@@ -1,0 +1,176 @@
+$whitePurpleTinge: #EFEBFF;
+$charcoalGrey: #353438;
+$lightGrey: #F2F2F2;
+$middleGrey: #ABABAB;
+$darkerGrey: #CCCCCC;
+$lightBlue: #41B2E2;
+$mediumBlue: #3192E2;
+$navyBlue: #5F6F8F;
+$purplishlavender: #8174BA;
+$pinkishLavender: #D99AED;
+
+
+div.knownLetterEntry {
+	text-indent: 20px;
+	color: $whitePurpleTinge;
+}
+
+body {
+    background-color: $charcoalGrey;
+    color: $whitePurpleTinge;
+	font-family: sans-serif;
+	margin-top: 0px;
+}
+
+a:link { color: $lightBlue; }
+a:visited { color: $mediumBlue; }
+a:hover { color: $purplishlavender; }
+a:active { color: $pinkishLavender; }
+
+button.reset {
+	color: #e7e7e7;
+	padding-left: 50px;
+}
+
+.buttons {
+	margin-top: 5px;
+}
+
+.buttons a:link { color: $lightBlue; }
+.buttons a:visited { color: $mediumBlue; }
+.buttons a:hover { color: $purplishlavender; }
+.buttons a:active { color: $pinkishLavender; }
+
+/* css button */
+
+.my-button {
+	border: 1px;
+	color: black;
+	padding: 7px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 5px;
+	border-radius: 10px;
+}
+.button-submit {
+    background-color: $lightGrey;
+}
+
+.button-reset {
+    background-color: $darkerGrey;
+}
+
+h1 {
+    color: $whitePurpleTinge;
+	line-height: 0.5em;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+input.knownInput {
+	size: 25%;
+}
+
+p {
+    color: $whitePurpleTinge;
+}
+
+table.solutions {
+	width: 30px;
+}
+
+table.solutionsWrapper {
+	border-spacing: 10px;
+}
+
+td.even {
+	color: $navyBlue;
+}
+
+td.odd {
+	color: $purplishlavender;
+}
+
+td {
+	vertical-align: top;
+}
+
+li {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+input[type="text"]
+{
+    font-size:12px;
+}
+
+#whatisthis {
+	color: $lightBlue;
+}
+
+#submitButton {
+	margin-top: 5px;
+}
+
+#header {
+	color: $whitePurpleTinge;
+	font-size: 2.5em;
+	margin-top: 5px;
+}
+
+#probableHeader {
+	margin-top: 15px;
+	font-size: 1.5em;
+}
+
+#filteredHeader {
+	margin-top: 15px;
+	font-size: 1em;
+}
+
+#note {
+	color: $middleGrey;
+	font-size: 85%;
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+#wordlogo {
+    max-width: 100%;
+    height: auto;
+	position: relative;
+	z-index: -1;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#imageAndMain {
+	position: absolute;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-top: 0px;
+	left: 0;
+	right: 0;
+	padding:0;
+	background-image: url('wordlogo.png');
+	background-repeat: no-repeat;
+	min-height: 210px;
+}
+
+#mainContent {
+	text-align: left;
+	margin-left: 150px;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-top: 110px;
+  	padding:0;
+	position: relative;
+	z-index: 10;
+	width: 80%;
+}

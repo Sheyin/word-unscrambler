@@ -1,20 +1,30 @@
-
 div.knownLetterEntry {
   text-indent: 20px;
   color: #EFEBFF;
 }
 
 body {
-    background-color: #353438;
-    color: #EFEBFF;
-	font-family: sans-serif;
-	margin-top: 0px;
+  background-color: #353438;
+  color: #EFEBFF;
+  font-family: sans-serif;
+  margin-top: 0px;
 }
 
-a:link { color: #41B2E2; }
-a:visited { color: #3192E2; }
-a:hover { color: #E5B8FC; }
-a:active { color: #D99AED; }
+a:link {
+  color: #41B2E2;
+}
+
+a:visited {
+  color: #3192E2;
+}
+
+a:hover {
+  color: #8174BA;
+}
+
+a:active {
+  color: #D99AED;
+}
 
 button.reset {
   color: #e7e7e7;
@@ -22,46 +32,52 @@ button.reset {
 }
 
 .buttons {
-	margin-top: 5px;
+  margin-top: 5px;
 }
 
-.buttons a:link { color: #41b2e2; }
-.buttons a:visited { color: #3192E2; }
-.buttons a:hover { color: #8174BA; }
-.buttons a:active { color: #D99AED; }
+.buttons a:link {
+  color: #41B2E2;
+}
+
+.buttons a:visited {
+  color: #3192E2;
+}
+
+.buttons a:hover {
+  color: #8174BA;
+}
+
+.buttons a:active {
+  color: #D99AED;
+}
 
 /* css button */
+.my-button {
+  border: 1px;
+  color: black;
+  padding: 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
 .button-submit {
-    background-color: #F2F2F2;
-    border: 1px;
-    color: black;
-    padding: 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-	margin-top: 5px;
-	border-radius: 15px;
+  background-color: #F2F2F2;
 }
 
 .button-reset {
-    background-color: #CCCCCC;
-    border: 1px;
-    color: black;
-    padding: 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-	border-radius: 15px;
+  background-color: #CCCCCC;
 }
 
 h1 {
-    color: #EFEBFF;
-	line-height: 0.5em;
-	margin-bottom: 10px;
-	margin-top: 5px;
-	font-weight: bold;
+  color: #EFEBFF;
+  line-height: 0.5em;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
 input.knownInput {
@@ -69,11 +85,11 @@ input.knownInput {
 }
 
 p {
-    color: #EFEBFF;
+  color: #EFEBFF;
 }
 
 table.solutions {
-  width = 30px;
+  width: 30px;
 }
 
 table.solutionsWrapper {
@@ -93,78 +109,79 @@ td {
 }
 
 li {
-	padding-top: 1px;
-	padding-bottom: 1px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
-input[type="text"]
-{
-    font-size:12px;
+input[type=text] {
+  font-size: 12px;
 }
 
 #whatisthis {
-	color: #41b2e2;
+  color: #41B2E2;
 }
 
 #submitButton {
-	margin-top: 5px;
+  margin-top: 5px;
 }
 
 #header {
-	color: #EFEBFF;
-	font-size: 2.5em;
-	margin-top: 5px;
+  color: #EFEBFF;
+  font-size: 2.5em;
+  margin-top: 5px;
 }
 
 #probableHeader {
-	margin-top: 15px;
-	font-size: 1.5em;
+  margin-top: 15px;
+  font-size: 1.5em;
 }
 
 #filteredHeader {
-	margin-top: 15px;
-	font-size: 1em;
+  margin-top: 15px;
+  font-size: 1em;
 }
 
 #note {
-	color: #ABABAB;
-	font-size: 85%;
-	margin-top: 2px;
-	margin-bottom: 5px;
+  color: #ABABAB;
+  font-size: 85%;
+  margin-top: 2px;
+  margin-bottom: 5px;
 }
 
 #wordlogo {
-    max-width: 100%;
-    height: auto;
-	position: relative;
-	z-index: -1;
-	margin-left: auto;
-	margin-right: auto;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  z-index: -1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #imageAndMain {
-	position: absolute;
-	width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-top: 0px;
-	left: 0;
-	right: 0;
-	padding:0;
-	background-image: url('wordlogo.png');
-	background-repeat: no-repeat;
-	min-height: 210px;
+  position: absolute;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 0px;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background-image: url("wordlogo.png");
+  background-repeat: no-repeat;
+  min-height: 210px;
 }
 
 #mainContent {
-	text-align: left;
-	margin-left: 150px;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-top: 110px;
-  	padding:0;
-	position: relative;
-	z-index: 10;
-	width: 80%;
+  text-align: left;
+  margin-left: 150px;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 110px;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+  width: 80%;
 }
+
+/*# sourceMappingURL=styles.css.map */
