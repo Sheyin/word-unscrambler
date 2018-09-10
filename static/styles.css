@@ -88,10 +88,11 @@ p {
   color: #EFEBFF;
 }
 
+/*
 table.solutions {
-  width: 30px;
+	width: 30px;
 }
-
+*/
 table.solutionsWrapper {
   border-spacing: 10px;
 }
@@ -159,7 +160,6 @@ input[type=text] {
 
 #imageAndMain {
   position: absolute;
-  width: 70%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
@@ -181,7 +181,6 @@ input[type=text] {
   padding: 0;
   position: relative;
   z-index: 10;
-  width: 80%;
 }
 
 /*# sourceMappingURL=styles.css.map */
