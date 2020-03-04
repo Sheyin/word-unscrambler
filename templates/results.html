@@ -37,25 +37,7 @@
         </p>
 
         <div class="results notranslate">
-          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
-          <!--
-        <div id="columnWrapper" class="notranslate">
-          <table id="solutionsWrapper">
-            <tr>
-              {%- for column in postfixResults|slice(10) %}
-              <td>
-                <table id="solutions">
-                  {%- for word in column %}
-                  <tr>
-                    <td class="{{ loop.cycle('odd', 'even') }}">{{word}}</td>
-                  </tr>
-                  {%- endfor %}
-                </table>
-              </td>
-              {%- endfor %}
-            </tr>
-		  </table>
-		-->
+          {%- for word in postfixResults %} {{word}} {%- endfor %}
         </div>
 
         {% else %}
@@ -93,23 +75,6 @@
         <p class="note">These are unlikely because the word ends strangely.</p>
         <div class="results notranslate">
           {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
-
-          <!--
-          <table id="solutionsWrapper">
-            <tr>
-              {%- for column in nonPostfixResults|slice(10) %}
-              <td>
-                <table id="solutions">
-                  {%- for word in column %}
-                  <tr>
-                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
-                  </tr>
-                  {%- endfor %}
-                </table>
-              </td>
-              {%- endfor %}
-            </tr>
-		  </table> -->
         </div>
       </div>
     </div>
@@ -142,25 +107,7 @@
         </p>
 
         <div class="results notranslate">
-          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
-          <!--
-        <div id="columnWrapper" class="notranslate">
-          <table id="solutionsWrapper">
-            <tr>
-              {%- for column in oddLetterResults|slice(10) %}
-              <td>
-                <table id="solutions">
-                  {%- for word in column %}
-                  <tr>
-                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
-                  </tr>
-                  {%- endfor %}
-                </table>
-              </td>
-              {%- endfor %}
-            </tr>
-		  </table>
-		-->
+          {%- for word in oddLetterResults %} {{word}} {%- endfor %}
         </div>
       </div>
     </div>
@@ -193,25 +140,7 @@
           first half of the word.
         </p>
         <div class="results notranslate">
-          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
-          <!--
-        <div id="columnWrapper" class="notranslate">
-          <table id="solutionsWrapper">
-            <tr>
-              {%- for column in lackingVowelResults|slice(10) %}
-              <td>
-                <table id="solutions">
-                  {%- for word in column %}
-                  <tr>
-                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
-                  </tr>
-                  {%- endfor %}
-                </table>
-              </td>
-              {%- endfor %}
-            </tr>
-		  </table>
-		-->
+          {%- for word in lackingVowelResults %} {{word}} {%- endfor %}
         </div>
       </div>
     </div>
