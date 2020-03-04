@@ -51,7 +51,7 @@ h2 {
 
 #length {
   font-size: 3.5em;
-  width: 50%;
+  width: 5rem;
   border-radius: 7px;
   text-align: center;
 }
@@ -92,8 +92,8 @@ header {
 
 #form {
   text-align: center;
-  border: 3px solid black;
-  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
   padding: 1ch;
   font-size: 1.3em;
   background-color: $offWhite;
@@ -115,13 +115,9 @@ header {
   margin-top: auto;
   margin-bottom: 0px;
   max-width: 40%;
-}
-
-#form-length-box {
-}
-
-input [type="radio"] {
-  margin: 10px;
+  label {
+    margin-right: 15px;
+  }
 }
 
 // Formatting the results on each card

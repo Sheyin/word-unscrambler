@@ -13,7 +13,7 @@
         onchange="populateNumbers()"
         onblur="populateNumbers()"
       /><br />
-      Letters to unscramble
+      <label for="letters">Letters to Unscramble</label>
     </div>
 
     <!-- Second box - numbers + radio input side by side -->
@@ -28,19 +28,12 @@
           id="length"
           required="required"
         /><br />
-        Word length
+        <label for="length">Word Length</label>
       </div>
 
       <div id="form-radio-box">
-        Are there any
-        <span
-          title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know."
-          id="whatisthis"
-          >known letters</span
-        >?:
         <p class="note">
-          If you know the position of a given letter, it will improve your
-          results considerably!
+          Do you know where a specific letter is in the word?
         </p>
         <input
           type="radio"
@@ -49,7 +42,7 @@
           onchange="getKnownLetters(this)"
           onblur="getKnownLetters(this)"
           id="lettersKnownTrue"
-        />Yes
+        /><label for="lettersKnownTrue">Yes</label>
         <input
           type="radio"
           name="known"
@@ -58,7 +51,7 @@
           onblur="getKnownLetters(this)"
           id="lettersKnownFalse"
           checked
-        />No
+        /><label for="lettersKnownFalse">No</label>
       </div>
     </div>
 
