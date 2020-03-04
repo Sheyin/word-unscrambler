@@ -1,186 +1,118 @@
 div.knownLetterEntry {
   text-indent: 20px;
-  color: #EFEBFF;
+  color: #cbccc6;
 }
 
 body {
-  background-color: #353438;
-  color: #EFEBFF;
+  background-color: #5f6f8f;
+  color: #cbccc6;
   font-family: sans-serif;
   margin-top: 0px;
 }
 
 a:link {
-  color: #41B2E2;
+  color: #41b2e2;
 }
 
 a:visited {
-  color: #3192E2;
+  color: #3192e2;
 }
 
 a:hover {
-  color: #8174BA;
+  color: #8174ba;
 }
 
 a:active {
-  color: #D99AED;
+  color: #d99aed;
 }
 
-button.reset {
-  color: #e7e7e7;
-  padding-left: 50px;
-}
-
-.buttons {
-  margin-top: 5px;
-}
-
-.buttons a:link {
-  color: #41B2E2;
-}
-
-.buttons a:visited {
-  color: #3192E2;
-}
-
-.buttons a:hover {
-  color: #8174BA;
-}
-
-.buttons a:active {
-  color: #D99AED;
-}
-
-/* css button */
-.my-button {
-  border: 1px;
-  color: black;
-  padding: 7px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 5px;
-  border-radius: 10px;
-}
-
-.button-submit {
-  background-color: #F2F2F2;
-}
-
-.button-reset {
-  background-color: #CCCCCC;
-}
-
-h1 {
-  color: #EFEBFF;
-  line-height: 0.5em;
-  margin-bottom: 10px;
-  margin-top: 5px;
+h2 {
+  color: #cbccc6;
   font-weight: bold;
+}
+
+#letters {
+  font-size: 4em;
+  width: 100%;
+  border-radius: 7px;
+  text-align: center;
+  margin: 0px;
+}
+
+#length {
+  font-size: 4em;
+  width: 1.7ch;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.knownLetterEntry {
+  width: 1.7ch;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 7px;
 }
 
 input.knownInput {
   size: 25%;
 }
 
-p {
-  color: #EFEBFF;
-}
-
-/*
-table.solutions {
-	width: 30px;
-}
-*/
-table.solutionsWrapper {
-  border-spacing: 10px;
-}
-
-td.even {
-  color: #5F6F8F;
-}
-
-td.odd {
-  color: #8174BA;
-}
-
-td {
-  vertical-align: top;
-}
-
-li {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-input[type=text] {
-  font-size: 12px;
-}
-
 #whatisthis {
-  color: #41B2E2;
+  color: #41b2e2;
 }
 
-#submitButton {
-  margin-top: 5px;
-}
-
-#header {
-  color: #EFEBFF;
+header {
+  color: #cbccc6;
   font-size: 2.5em;
   margin-top: 5px;
+  text-align: center;
+  font-family: "Cabin Sketch";
 }
 
-#probableHeader {
-  margin-top: 15px;
-  font-size: 1.5em;
-}
-
-#filteredHeader {
-  margin-top: 15px;
-  font-size: 1em;
-}
-
-#note {
-  color: #ABABAB;
+.note {
+  color: #424957;
   font-size: 85%;
-  margin-top: 2px;
-  margin-bottom: 5px;
 }
 
-#wordlogo {
-  max-width: 100%;
-  height: auto;
-  position: relative;
-  z-index: -1;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#imageAndMain {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-top: 0px;
-  left: 0;
-  right: 0;
-  padding: 0;
-  background-image: url("wordlogo.png");
-  background-repeat: no-repeat;
-  min-height: 210px;
+.instructions {
+  font-size: 85%;
+  margin: 2em;
 }
 
 #mainContent {
-  text-align: left;
-  margin-left: 150px;
+  margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0;
-  margin-top: 110px;
   padding: 0;
-  position: relative;
-  z-index: 10;
+}
+
+#form {
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 7px;
+  padding: 1ch;
+  font-size: 1.3em;
+}
+
+.form-box-split {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+}
+
+#form-radio-box {
+  margin-top: auto;
+  margin-bottom: 0px;
+}
+
+.results {
+  color: #424957;
+}
+
+@media (min-width: 1200px) {
+  body {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

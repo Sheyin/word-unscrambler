@@ -1,178 +1,141 @@
-$whitePurpleTinge: #EFEBFF;
-$charcoalGrey: #353438;
-$lightGrey: #F2F2F2;
-$middleGrey: #ABABAB;
-$darkerGrey: #CCCCCC;
-$lightBlue: #41B2E2;
-$mediumBlue: #3192E2;
-$navyBlue: #5F6F8F;
-$purplishlavender: #8174BA;
-$pinkishLavender: #D99AED;
-
+$charcoalGrey: #232834;
+$lightGrey: #cbccc6;
+$darkGrey: #424957;
+$lightBlue: #41b2e2;
+$mediumBlue: #3192e2;
+$navyBlue: #5f6f8f;
+$Lavender: #8174ba;
+$lighterLavender: #8074ba;
+$whitishLavender: #d6d1ee;
+$pinkishLavender: #d99aed;
 
 div.knownLetterEntry {
-	text-indent: 20px;
-	color: $whitePurpleTinge;
+  text-indent: 20px;
+  color: $lightGrey;
 }
 
 body {
-    background-color: $charcoalGrey;
-    color: $whitePurpleTinge;
-	font-family: sans-serif;
-	margin-top: 0px;
+  background-color: $navyBlue;
+  color: $lightGrey;
+  font-family: sans-serif;
+  margin-top: 0px;
 }
 
-a:link { color: $lightBlue; }
-a:visited { color: $mediumBlue; }
-a:hover { color: $purplishlavender; }
-a:active { color: $pinkishLavender; }
-
-button.reset {
-	color: #e7e7e7;
-	padding-left: 50px;
+a:link {
+  color: $lightBlue;
+}
+a:visited {
+  color: $mediumBlue;
+}
+a:hover {
+  color: $Lavender;
+}
+a:active {
+  color: $pinkishLavender;
 }
 
-.buttons {
-	margin-top: 5px;
+h2 {
+  color: $lightGrey;
+  font-weight: bold;
 }
 
-.buttons a:link { color: $lightBlue; }
-.buttons a:visited { color: $mediumBlue; }
-.buttons a:hover { color: $purplishlavender; }
-.buttons a:active { color: $pinkishLavender; }
-
-/* css button */
-
-.my-button {
-	border: 1px;
-	color: black;
-	padding: 7px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-top: 5px;
-	border-radius: 10px;
-}
-.button-submit {
-    background-color: $lightGrey;
+#letters {
+  font-size: 4em;
+  width: 100%;
+  border-radius: 7px;
+  text-align: center;
+  margin: 0px;
 }
 
-.button-reset {
-    background-color: $darkerGrey;
+#length {
+  font-size: 4em;
+  width: 1.7ch;
+  border-radius: 7px;
+  text-align: center;
 }
 
-h1 {
-    color: $whitePurpleTinge;
-	line-height: 0.5em;
-	margin-bottom: 10px;
-	margin-top: 5px;
-	font-weight: bold;
+.knownLetterEntry {
+  width: 1.7ch;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 7px;
 }
 
 input.knownInput {
-	size: 25%;
-}
-
-p {
-    color: $whitePurpleTinge;
-}
-
-/*
-table.solutions {
-	width: 30px;
-}
-*/
-table.solutionsWrapper {
-	border-spacing: 10px;
-}
-
-td.even {
-	color: $navyBlue;
-}
-
-td.odd {
-	color: $purplishlavender;
-}
-
-td {
-	vertical-align: top;
-}
-
-li {
-	padding-top: 1px;
-	padding-bottom: 1px;
-}
-
-input[type="text"]
-{
-    font-size:12px;
+  size: 25%;
 }
 
 #whatisthis {
-	color: $lightBlue;
+  color: $lightBlue;
 }
 
-#submitButton {
-	margin-top: 5px;
+header {
+  color: $lightGrey;
+  font-size: 2.5em;
+  margin-top: 5px;
+  text-align: center;
+  font-family: "Cabin Sketch";
 }
 
-#header {
-	color: $whitePurpleTinge;
-	font-size: 2.5em;
-	margin-top: 5px;
+.note {
+  color: $darkGrey;
+  font-size: 85%;
 }
 
-#probableHeader {
-	margin-top: 15px;
-	font-size: 1.5em;
+.instructions {
+  font-size: 85%;
+  margin: 2em;
 }
-
-#filteredHeader {
-	margin-top: 15px;
-	font-size: 1em;
-}
-
-#note {
-	color: $middleGrey;
-	font-size: 85%;
-	margin-top: 2px;
-	margin-bottom: 5px;
-}
-
-#wordlogo {
-    max-width: 100%;
-    height: auto;
-	position: relative;
-	z-index: -1;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-#imageAndMain {
-	position: absolute;
-	//width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-top: 0px;
-	left: 0;
-	right: 0;
-	padding:0;
-	background-image: url('wordlogo.png');
-	background-repeat: no-repeat;
-	min-height: 210px;
-}
-
 
 #mainContent {
-	text-align: left;
-	margin-left: 150px;
-	margin-right: auto;
-	margin-bottom: 0;
-	margin-top: 110px;
-  	padding:0;
-	position: relative;
-	z-index: 10;
-	//width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+#form {
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 7px;
+  padding: 1ch;
+  font-size: 1.3em;
+}
+
+.form-box-single {
+}
+
+.form-box-split {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+}
+
+#form-radio-box {
+  margin-top: auto;
+  margin-bottom: 0px;
+}
+
+// Formatting the results on each card
+.results {
+  color: $darkGrey;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  body {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }

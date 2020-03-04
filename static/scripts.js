@@ -1,106 +1,109 @@
-// If the user selects "yes, there are known letters", then the additional form is shown.
-// Otherwise, those blanks remain hidden from view.
-function getKnownLetters(knownNode) {
-	var known = knownNode.value;
-	var length = document.getElementById('length').value;
+// getKnownLetters(): If the user selects "yes, there are known letters",
+// then this reveals an additional input box to enter that information.
+// If the user selects "no" (default), the field remains hidden from view.
+// "knownNode" is
+function getKnownLetters(lettersAreKnownOption) {
+  const known = lettersAreKnownOption.value;
+  const length = document.getElementById("length").value;
 
-	if (known == 'True') {
-		var letterBlanks = '';
-		for (i=0; i<length; i++) {
-			idName = 'letter' + i;
-			letterBlanks += ' <input type="text" name=idName class="knownLetterEntry" maxlength="1" size="3" /> '
-		}
-		var formText = 'What letters are known?: <br>' + letterBlanks + '<br>';
-		document.getElementById('knownLetterEntry').innerHTML=formText;
-	}
-
-	else {
-		document.getElementById('knownLetterEntry').innerHTML='';
-	}
+  if (known == "True") {
+    let letterBlanks = "";
+    for (let i = 0; i < length; i++) {
+      let idName = "letter" + i;
+      let letterBlanksString =
+        ' <input type="text" name="' +
+        idName +
+        '" class="knownLetterEntry" maxlength="1" /> ';
+      letterBlanks += letterBlanksString;
+    }
+    const formText =
+      '<div class="form-box">What letters are known?: <br />' +
+      letterBlanks +
+      "</div>";
+    document.getElementById("knownLetterEntry").innerHTML = formText;
+  } else {
+    document.getElementById("knownLetterEntry").innerHTML = "";
+  }
 }
 
+// populateNumbers(): Assuming user has just finished entering letters
+// into #letters, it will count and prepopulate #numbers with the max
+// value possible by default, so the user does not have to enter it manually.
+function populateNumbers() {
+  const length = document.getElementById("letters").value.length;
+  const lengthNode = document.getElementById("length");
+  lengthNode.value = length;
+  resetPartial();
+}
 
-// Gets the form information and submits the form
+// packageAndSubmit(): Called when the user presses "Unscramble" and submits
+// the form.  Gathers the form information and packages it before sending.
 function packageAndSubmit() {
-	var knownLettersRadio = document.getElementById("lettersKnownTrue");
-	// Only get the known letters if user has marked "True"
-	if (knownLettersRadio.checked) {
-		bundleKnownLetters();
-	}
-	submitForm();
+  const knownLettersRadio = document.getElementById("lettersKnownTrue");
+  if (knownLettersRadio.checked) {
+    bundleKnownLetters();
+  }
+  document.getElementById("inputForm").submit();
 }
 
-
-// This reads each of the "known" letters and packages them into an array to be sent with the request.
+// bundleKnownLetters(): A helper function for packageAndSubmit().  This reads
+// each of the "known" letters given when the form is submitted, and packages
+// them into an array to be sent with the request.
 function bundleKnownLetters() {
-	var knownSpaces = document.getElementsByClassName('knownLetterEntry');
-	for (i=0; i<document.getElementById('length').value; i++) {
-		knownLetters = document.getElementById('knownLettersBox');
-		if (knownSpaces[i].value == '') {
-			knownLetters.value += '_';
-		}
-		else {
-			knownLetters.value += knownSpaces[i].value;
-		}
-		// When done reading each space, should set it to "disabled" so it is not sent in the request.
-		// But it's not quite working.
-		knownSpaces[i].innerHTML = ' <input type="text" name=idName class="knownInput" maxlength="1" size="3" disabled /> '
-	}
+  const knownSpaces = document.getElementsByClassName("knownLetterEntry");
+  for (let i = 0; i < document.getElementById("length").value; i++) {
+    const knownLetters = document.getElementById("knownLettersBox");
+    if (knownSpaces[i].value == "") {
+      knownLetters.value += "_";
+    } else {
+      knownLetters.value += knownSpaces[i].value;
+    }
+    // When done reading each space, should set it to "disabled" so
+    // it is not sent in the request.
+    // Fixed how it is implemented, but I'm not entirely sure it is working,
+    // or why I tried to add it in the first place.
+    const knownInputBlanks = document.getElementsByClassName("knownInput");
+    for (let i = 0; i < knownInputBlanks.length; i++) {
+      knownInputBlanks[i].setAttribute("disabled", "");
+    }
+  }
 }
 
-// This clears all the fields and resets values to default.
+// resetForm(): This clears all the fields and resets values
+// to default values.  Used when "Clear form" button is pressed.
 function resetForm() {
-	// store old letters in cookie
-	//writeCookie(document.getElementById('letters').value);
-	document.getElementById('letters').value = '';
-	document.getElementById('length').value = '';
-	document.getElementById('lettersKnownFalse').checked = true;
-	document.getElementById('lettersKnownTrue').checked = false;
-	document.getElementById('knownLetterEntry').innerHTML = '';
-	document.getElementById('knownLettersBox').value = '';
+  document.getElementById("letters").value = "";
+  document.getElementById("length").value = "";
+  document.getElementById("lettersKnownFalse").checked = true;
+  document.getElementById("lettersKnownTrue").checked = false;
+  document.getElementById("knownLetterEntry").innerHTML = "";
+  document.getElementById("knownLettersBox").value = "";
 }
 
-
-// If the length changes, validate input and reset the "known letters"
+// resetPartial(): This provides a sanity check to make sure the
+// requested length of the word is never larger than the
+// maximum amount of letters given.  If the "length of the word"
+// changes, it validates input and resets the "known letters"
+// box and related fields.
 function resetPartial() {
-	checkLength();
-	document.getElementById('lettersKnownFalse').checked = true;
-	document.getElementById('lettersKnownTrue').checked = false;
-	document.getElementById('knownLetterEntry').innerHTML = '';
-	document.getElementById('knownLettersBox').value = '';
+  checkLength();
+  document.getElementById("lettersKnownFalse").checked = true;
+  document.getElementById("lettersKnownTrue").checked = false;
+  document.getElementById("knownLetterEntry").innerHTML = "";
+  document.getElementById("knownLettersBox").value = "";
 }
 
-
-// If the user does not enter enough scrambled letters to match the length of
-// the word to find, then the length of the word to find will be updated to the
-// lesser value (since it cannot be greater than the maximum letters given)
+// checkLength(): A helper function for resetPartial().
+// If the user does not enter enough scrambled letters to match the
+// specified "length of the word to find", then the "length of the
+// word to find" will be updated to match the maximum number of
+// letters given, since there must be a letter given for every
+// letter expected in the output.  Basically, a sanity check for input.
 function checkLength() {
-	var lengthGiven = document.getElementById('length').value;
-	var lengthString = document.getElementById('letters').value.length;
+  const lengthGiven = document.getElementById("length").value;
+  const lengthString = document.getElementById("letters").value.length;
 
-	if (lengthGiven > lengthString) {
-		document.getElementById('length').value = lengthString;
-	}
-}
-
-
-// This allows the form to be submitted by the new buttons
-function submitForm() {
-	// $('form').serialize()
-	document.getElementById("inputForm").submit();
-}
-
-// This function is not implemented yet - just copied some older code to use as a blueprint
-// TODO: Fix this - lacking expiry date, way to track ~5-6 last used letters, etc.
-function writeCookie(letterPool) {
-	// get time data
-	var d = new Date();
-	//d.setFullYear(year);
-	var append = "letters=" + letterPool;
-	//var cookieExpiry = "expires=" + d.toUTCString();
-	//var combinedCookie = append + cookieExpiry + ";path=/";
-	//document.cookie = combinedCookie;
-
-	// For debugging until I remember how to do this
-	console.log("Cookie written: " + document.cookie);
+  if (lengthGiven > lengthString) {
+    document.getElementById("length").value = lengthString;
+  }
 }

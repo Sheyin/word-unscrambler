@@ -1,33 +1,96 @@
-{% extends "template.html" %}
+{% extends "template.html" %} {% block content %}
+<header>Word Unscrambler</header>
 
-{% block content %}
-	<div id="header">Unscrambling letters</div>
+<div id="form">
+  <form action="/search" method="get" id="inputForm">
+    <!-- First box - letter entry -->
+    <div class="form-box-single">
+      <input
+        type="text"
+        name="letters"
+        maxlength="9"
+        id="letters"
+        required="required"
+        placeholder="letters"
+        onchange="populateNumbers()"
+      /><br />
+      Letters to unscramble
+    </div>
 
-	<p id="note">This is a tool to unscramble words given a pool of letters.  After filling out the
-	fields below, it will generate a list of results, some of which will be identified as most likely
-	being a word.  If it has deemed unlikely to be a word, it will tell you why, but all possible
-	combinations will be shown.</p>
+    <!-- Second box - numbers + radio input side by side -->
+    <div class="form-box-split">
+      <div>
+        <input
+          type="number"
+          name="length"
+          maxlength="1"
+          onchange="resetPartial()"
+          id="length"
+          required="required"
+          placeholder="#"
+        /><br />
+        Word length
+      </div>
 
-	<p>
-		<form action = "/search" method="get" id="inputForm">
-			<ul type= "disc">
-				<li>Letters to unscramble: <input type="text" name="letters" maxlength="9" size="9" id="letters">
-				<li>Length of the word to find: <input type="text" name="length" maxlength="1" size="3" onchange="resetPartial()" id="length">
-				<li>Are there any <span title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know." id="whatisthis">known letters</span>?:
-					<input type="radio" name="known" value="True" onchange="getKnownLetters(this)" id='lettersKnownTrue'>Yes
-					<input type="radio" name="known" value="False"  onchange="getKnownLetters(this)" id='lettersKnownFalse' checked>No
-					<input type="hidden" name="knownLetters" default="" id="knownLettersBox">
-			</ul>
-			<div id="knownLetterEntry"></div>
+      <div id="form-radio-box">
+        Are there any
+        <span
+          title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know."
+          id="whatisthis"
+          >known letters</span
+        >?:<br />
+        <input
+          type="radio"
+          name="known"
+          value="True"
+          onchange="getKnownLetters(this)"
+          id="lettersKnownTrue"
+        />Yes
+        <input
+          type="radio"
+          name="known"
+          value="False"
+          onchange="getKnownLetters(this)"
+          id="lettersKnownFalse"
+          checked
+        />No
+      </div>
+    </div>
 
-			<div class="buttons">
-			<a href="#" class="my-button button-submit" id="submit_button" onclick="packageAndSubmit()">Submit</a>
-			<a href="#" class="my-button button-reset" id="reset_button" onclick="resetForm()">Clear Form</a>
-			</div>
-		</form>
-	</p>
+    <div class="form-box-single">
+      <input
+        type="hidden"
+        name="knownLetters"
+        default=""
+        id="knownLettersBox"
+      />
+      <div id="knownLetterEntry"></div>
+    </div>
 
-	<P>
-		<div id="note">Source code can be found <a href="https://github.com/Sheyin/word-unscrambler">here</a>.</div>
-	</p>
+    <div class="buttons form-box-single">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg"
+        onclick="packageAndSubmit()"
+      >
+        Unscramble
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-lg"
+        onclick="resetForm()"
+      >
+        Clear Form
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="instructions">
+  <h2>Instructions</h2>
+  This is a tool to generate words given a pool of letters. Fill out the
+  information in the above form, and it will create a list of results, sorted by
+  whether it is a possible word or disqualified for a specific reason.
+  <br />
+</div>
 {% endblock %}

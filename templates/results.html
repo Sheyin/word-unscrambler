@@ -1,98 +1,222 @@
-{% extends "template.html" %}
+{% extends "template.html" %} {% block content %}
+<h2>{{totalCount}} total combinations found for {{letters}}:</h2>
+<p id="note">
+  These have been categorized from most likely to least likely words.
+</p>
+<a href="index.html"
+  ><button type="button" class="btn btn-primary">Search again</button></a
+>
 
-{% block content %}
-	<div id="header">{{totalCount}} combinations found for {{letters}}:</div>
-	<p id="note">These have been categorized from most likely to least likely words.</p>
+<div class="accordion" id="accordionResults">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Probable Results ({{postfixCount}})
+        </button>
+      </h2>
+    </div>
 
-	{% if postfixResults %}
-		<div id="probableHeader">{{postfixCount}} probable results:</div>
-		<p id="note">These are the most likely results, based on how the word ends.</p>
+    <div
+      id="collapseOne"
+      class="collapse show"
+      aria-labelledby="headingOne"
+      data-parent="#accordionResults"
+    >
+      <div class="card-body">
+        {% if postfixResults %}
+        <p class="note">
+          These are the most likely results, based on how the word ends.
+        </p>
 
-		<div id="columnWrapper" class="notranslate">
-			<table id="solutionsWrapper">
-				<tr>
-				{%- for column in postfixResults|slice(10) %}
-					<td>
-						<table id = "solutions">
-							{%- for word in column %}
-								<tr><td class="{{ loop.cycle('odd', 'even') }}">{{word}}</td></tr>
-							{%- endfor %}
-						</table>
-					</td>
-				{%- endfor %}
-				</tr>
-			</table>
-		</div>
+        <div class="results notranslate">
+          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
+          <!--
+        <div id="columnWrapper" class="notranslate">
+          <table id="solutionsWrapper">
+            <tr>
+              {%- for column in postfixResults|slice(10) %}
+              <td>
+                <table id="solutions">
+                  {%- for word in column %}
+                  <tr>
+                    <td class="{{ loop.cycle('odd', 'even') }}">{{word}}</td>
+                  </tr>
+                  {%- endfor %}
+                </table>
+              </td>
+              {%- endfor %}
+            </tr>
+		  </table>
+		-->
+        </div>
 
-		{% else %}
-		<div id="header">No probable results found for {{letters}}.</div>
-		<p id="note">This may be a false negative.  Look through the other results below.</p>
-	{% endif %}
+        {% else %}
+        <div id="header">No probable results found for {{letters}}.</div>
+        <p id="note">
+          This may be a false negative! Look through the other results below.
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% if nonPostfixResults %}
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Results w/ odd endings ({{nonPostfixCount}})
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordionResults"
+    >
+      <div class="card-body">
+        <p class="note">These are unlikely because the word ends strangely.</p>
+        <div class="results notranslate">
+          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
 
+          <!--
+          <table id="solutionsWrapper">
+            <tr>
+              {%- for column in nonPostfixResults|slice(10) %}
+              <td>
+                <table id="solutions">
+                  {%- for word in column %}
+                  <tr>
+                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
+                  </tr>
+                  {%- endfor %}
+                </table>
+              </td>
+              {%- endfor %}
+            </tr>
+		  </table> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% if oddLetterResults %}
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
+          Results w/ odd beginnings ({{oddLetterCount}})
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseThree"
+      class="collapse"
+      aria-labelledby="headingThree"
+      data-parent="#accordionResults"
+    >
+      <div class="card-body">
+        <p class="note">
+          These are unlikely because they start with odd letter combinations.
+        </p>
 
-	{% if nonPostfixResults %}
-		<div id="filteredHeader">{{nonPostfixCount}} results found that do not end in a known postfix:</div>
-		<p id="note">These do not end in predefined postfixes.</p>
+        <div class="results notranslate">
+          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
+          <!--
+        <div id="columnWrapper" class="notranslate">
+          <table id="solutionsWrapper">
+            <tr>
+              {%- for column in oddLetterResults|slice(10) %}
+              <td>
+                <table id="solutions">
+                  {%- for word in column %}
+                  <tr>
+                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
+                  </tr>
+                  {%- endfor %}
+                </table>
+              </td>
+              {%- endfor %}
+            </tr>
+		  </table>
+		-->
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% if lackingVowelResults %}
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseFour"
+          aria-expanded="false"
+          aria-controls="collapseFour"
+        >
+          Results w/out early vowels ({{lackingVowelCount}})
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseFour"
+      class="collapse"
+      aria-labelledby="headingFour"
+      data-parent="#accordionResults"
+    >
+      <div class="card-body">
+        <p class="note">
+          These are unlikely to be words because they do not have a vowel in the
+          first half of the word.
+        </p>
+        <div class="results notranslate">
+          {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
+          <!--
+        <div id="columnWrapper" class="notranslate">
+          <table id="solutionsWrapper">
+            <tr>
+              {%- for column in lackingVowelResults|slice(10) %}
+              <td>
+                <table id="solutions">
+                  {%- for word in column %}
+                  <tr>
+                    <td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td>
+                  </tr>
+                  {%- endfor %}
+                </table>
+              </td>
+              {%- endfor %}
+            </tr>
+		  </table>
+		-->
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
 
-		<div id="columnWrapper" class="notranslate">
-			<table id="solutionsWrapper">
-				<tr>
-				{%- for column in nonPostfixResults|slice(10) %}
-					<td>
-						<table id = "solutions">
-							{%- for word in column %}
-								<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
-							{%- endfor %}
-						</table>
-					</td>
-				{%- endfor %}
-				</tr>
-			</table>
-		</div>
-	{% endif %}
-
-
-	{% if oddLetterResults %}
-	<div id="filteredHeader">{{oddLetterCount}} results were filtered due to starting with odd letters:</div>
-	<p id="note">These are unlikely because they start with odd letter combinations.</p>
-
-	<div id="columnWrapper" class="notranslate">
-		<table id="solutionsWrapper">
-			<tr>
-			{%- for column in oddLetterResults|slice(10) %}
-				<td>
-					<table id = "solutions">
-						{%- for word in column %}
-							<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
-						{%- endfor %}
-					</table>
-				</td>
-			{%- endfor %}
-			</tr>
-		</table>
-	</div>
-
-	{% endif %}
-
-
-	{% if lackingVowelResults %}
-	<div id="filteredHeader">{{lackingVowelCount}} results were filtered due to lacking vowels:</div>
-	<p id="note">These are unlikely because they do not have a vowel in the first half of the combination.</p>
-
-	<div id="columnWrapper" class="notranslate">
-		<table id="solutionsWrapper">
-			<tr>
-			{%- for column in lackingVowelResults|slice(10) %}
-				<td>
-					<table id = "solutions">
-						{%- for word in column %}
-							<tr><td class="{{ loop.cycle('odd', 'even') }}">{{ word }}</td></tr>
-						{%- endfor %}
-					</table>
-				</td>
-			{%- endfor %}
-			</tr>
-		</table>
-	</div>
-	{% endif %}
 {% endblock %}
