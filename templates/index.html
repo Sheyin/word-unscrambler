@@ -10,7 +10,6 @@
         maxlength="9"
         id="letters"
         required="required"
-        placeholder="letters"
         onchange="populateNumbers()"
         onblur="populateNumbers()"
       /><br />
@@ -19,7 +18,7 @@
 
     <!-- Second box - numbers + radio input side by side -->
     <div class="form-box-split">
-      <div>
+      <div id="length-box">
         <input
           type="number"
           name="length"
@@ -28,7 +27,6 @@
           onblur="resetPartial()"
           id="length"
           required="required"
-          placeholder="#"
         /><br />
         Word length
       </div>
@@ -39,7 +37,11 @@
           title="A character of which you know the letter and position.  Ex. a word in a crossword puzzle may have letters you know."
           id="whatisthis"
           >known letters</span
-        >?:<br />
+        >?:
+        <p class="note">
+          If you know the position of a given letter, it will improve your
+          results considerably!
+        </p>
         <input
           type="radio"
           name="known"

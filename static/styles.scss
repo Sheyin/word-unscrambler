@@ -51,14 +51,14 @@ h2 {
 
 #length {
   font-size: 3.5em;
-  width: 2em;
+  width: 50%;
   border-radius: 7px;
   text-align: center;
 }
 
 .knownLetterEntry {
-  width: 1.4em;
-  font-size: 1.2em;
+  width: 2rem;
+  font-size: 1em;
   text-align: center;
   border-radius: 7px;
 }
@@ -118,6 +118,14 @@ header {
 #form-radio-box {
   margin-top: auto;
   margin-bottom: 0px;
+  max-width: 40%;
+}
+
+#form-length-box {
+}
+
+input [type="radio"] {
+  padding: 10px;
 }
 
 // Formatting the results on each card
