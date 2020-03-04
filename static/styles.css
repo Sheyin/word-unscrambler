@@ -33,7 +33,7 @@ h2 {
 }
 
 #letters {
-  font-size: 4em;
+  font-size: 3.5em;
   width: 100%;
   border-radius: 7px;
   text-align: center;
@@ -41,8 +41,8 @@ h2 {
 }
 
 #length {
-  font-size: 4em;
-  width: 2ch;
+  font-size: 3.5em;
+  width: 3ch;
   border-radius: 7px;
   text-align: center;
 }
