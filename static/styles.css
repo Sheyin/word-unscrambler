@@ -48,14 +48,10 @@ h2 {
 }
 
 .knownLetterEntry {
-  width: 2rem;
+  width: 3rem;
   font-size: 1em;
   text-align: center;
   border-radius: 7px;
-}
-
-input.knownInput {
-  size: 25%;
 }
 
 #whatisthis {
@@ -113,7 +109,7 @@ header {
 }
 
 input [type=radio] {
-  padding: 10px;
+  margin: 10px;
 }
 
 .results {
