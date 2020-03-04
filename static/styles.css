@@ -8,6 +8,7 @@ body {
   color: #cbccc6;
   font-family: sans-serif;
   margin-top: 0px;
+  padding-top: 5px;
 }
 
 a:link {
@@ -63,8 +64,7 @@ input.knownInput {
 
 header {
   color: #cbccc6;
-  font-size: 2.5em;
-  margin-top: 5px;
+  font-size: 3em;
   text-align: center;
   font-family: "Cabin Sketch";
 }
@@ -75,7 +75,7 @@ header {
 }
 
 .instructions {
-  font-size: 85%;
+  font-size: 100%;
   margin: 2em;
 }
 
@@ -91,6 +91,13 @@ header {
   border-radius: 7px;
   padding: 1ch;
   font-size: 1.3em;
+  background-color: #f7f7f7;
+  color: #424957;
+}
+
+.form-box-single {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .form-box-split {
@@ -113,6 +120,20 @@ header {
     padding-left: 20%;
     padding-right: 20%;
   }
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #cbccc6;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #cbccc6;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #cbccc6;
 }
 
 /*# sourceMappingURL=styles.css.map */

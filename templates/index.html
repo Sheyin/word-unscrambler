@@ -13,6 +13,7 @@
         required="required"
         placeholder="letters"
         onchange="populateNumbers()"
+        onblur="populateNumbers()"
       /><br />
       Letters to unscramble
     </div>
@@ -25,6 +26,7 @@
           name="length"
           maxlength="1"
           onchange="resetPartial()"
+          onblur="resetPartial()"
           id="length"
           required="required"
           placeholder="#"
@@ -44,6 +46,7 @@
           name="known"
           value="True"
           onchange="getKnownLetters(this)"
+          onblur="getKnownLetters(this)"
           id="lettersKnownTrue"
         />Yes
         <input
@@ -51,6 +54,7 @@
           name="known"
           value="False"
           onchange="getKnownLetters(this)"
+          onblur="getKnownLetters(this)"
           id="lettersKnownFalse"
           checked
         />No

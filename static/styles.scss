@@ -1,6 +1,7 @@
 $charcoalGrey: #232834;
 $lightGrey: #cbccc6;
 $darkGrey: #424957;
+$offWhite: #f7f7f7;
 $lightBlue: #41b2e2;
 $mediumBlue: #3192e2;
 $navyBlue: #5f6f8f;
@@ -19,6 +20,7 @@ body {
   color: $lightGrey;
   font-family: sans-serif;
   margin-top: 0px;
+  padding-top: 5px;
 }
 
 a:link {
@@ -71,8 +73,7 @@ input.knownInput {
 
 header {
   color: $lightGrey;
-  font-size: 2.5em;
-  margin-top: 5px;
+  font-size: 3em;
   text-align: center;
   font-family: "Cabin Sketch";
 }
@@ -83,7 +84,7 @@ header {
 }
 
 .instructions {
-  font-size: 85%;
+  font-size: 100%;
   margin: 2em;
 }
 
@@ -99,9 +100,13 @@ header {
   border-radius: 7px;
   padding: 1ch;
   font-size: 1.3em;
+  background-color: $offWhite;
+  color: $darkGrey;
 }
 
 .form-box-single {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .form-box-split {
@@ -138,4 +143,21 @@ header {
     padding-left: 20%;
     padding-right: 20%;
   }
+}
+
+// Changing the color of placeholder text
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $lightGrey;
+  //opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $lightGrey;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $lightGrey;
 }
