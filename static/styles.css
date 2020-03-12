@@ -73,6 +73,7 @@ header {
 .note {
   color: #424957;
   font-size: 85%;
+  margin-top: 1rem;
 }
 
 .instructions {
@@ -119,6 +120,7 @@ header {
 
 .results {
   color: #424957;
+  word-spacing: 2rem;
 }
 
 @media (min-width: 1200px) {
