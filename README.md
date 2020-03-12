@@ -25,5 +25,5 @@ Usage:
 It is currently hosted <a href="http://sheyin.pythonanywhere.com/">here</a>.
 
 Screenshots:
-<img src="screenshots/screenshot3.jpg" alt="Filling out information about the word">  
-<img src="screenshots/screenshot4.jpg" alt="Results found by the application">
+<br /><img src="screenshots/screenshot3.jpg" alt="Filling out information about the word">  
+<br /><img src="screenshots/screenshot4.jpg" alt="Results found by the application">
