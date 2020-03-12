@@ -10,30 +10,25 @@ h2 {
   font-weight: bold;
 }
 
-#letters {
+input {
   font-size: 3.5em;
-  width: 100%;
   border-radius: 7px;
   text-align: center;
   margin: 0px;
+  padding: 0;
+}
+
+#letters {
+  width: 100%;
 }
 
 #length {
-  font-size: 3.5em;
   width: 50%;
-  border-radius: 7px;
-  text-align: center;
-  padding: 0;
 }
 
 .knownLetterEntry {
-  width: 50%;
+  width: 3rem;
   font-size: 1em;
-  text-align: center;
-  border-radius: 7px;
-  padding: 0;
-  text-indent: 20px;
-  color: #cbccc6;
 }
 
 header {
@@ -48,7 +43,7 @@ header {
 
 .instructions {
   font-size: 100%;
-  margin: 2em;
+  margin: 0.5rem;
 }
 
 #mainContent {

@@ -2,7 +2,6 @@
 
 <div id="form">
   <form action="/search" method="get" id="inputForm">
-    <!-- First box - letter entry -->
     <div class="form-box-single">
       <input
         type="text"
@@ -83,11 +82,8 @@
 
 <div class="instructions">
   <h2>Instructions</h2>
-  This is a tool to generate words given a pool of letters. Fill out the
-  information in the above form, and it will create a list of results, sorted by
-  whether it is a possible word or disqualified for a specific reason. This will
-  only generate words that use every possible letter/position, not subsets, and
+  This is a tool to try to find words given a pool of letters. It will only
+  generate words that use every possible letter/position, not subsets, and
   non-alphanumeric characters will be rejected.
-  <br />
 </div>
 {% endblock %}
