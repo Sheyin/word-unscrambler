@@ -1,10 +1,16 @@
 // getKnownLetters(): If the user selects "yes, there are known letters",
 // then this reveals an additional input box to enter that information.
 // If the user selects "no" (default), the field remains hidden from view.
-// "knownNode" is
+// Uses checkAreLettersBlank() to warn user to fill in letters first if
+// the letters box is blank prior to clicking "yes".
 function getKnownLetters(lettersAreKnownOption) {
   const known = lettersAreKnownOption.value;
   const length = document.getElementById("length").value;
+
+  if (checkAreLettersBlank()) {
+    // No letters given, halt execution
+    return;
+  }
 
   if (known == "True") {
     let letterBlanks = "";
@@ -40,6 +46,11 @@ function populateNumbers() {
 // the form.  Gathers the form information and packages it before sending.
 function packageAndSubmit() {
   const knownLettersRadio = document.getElementById("lettersKnownTrue");
+  if (checkAreLettersBlank()) {
+    // No letters given, halt execution
+    return;
+  }
+
   if (knownLettersRadio.checked) {
     bundleKnownLetters();
   }
@@ -105,5 +116,24 @@ function checkLength() {
 
   if (lengthGiven > lengthString) {
     document.getElementById("length").value = lengthString;
+  }
+}
+
+// checkAreLettersBlank(): Helper function in getKnownLetters().
+// When user clicks "yes" to knowing a letter's position, this checks
+// to see if there are any letters already given since it would produce
+// an odd blank prompt if none are given before clicking.
+// Warns user if no letters are given; removes prompt if there are some.
+function checkAreLettersBlank() {
+  const length = document.getElementById("letters").value.length;
+  const errorBox = document.getElementById("error-no-letters");
+
+  if (length > 0) {
+    errorBox.innerHTML = "";
+    return false;
+  } else {
+    errorBox.innerHTML = "Please fill in the letters first.";
+    document.getElementById("lettersKnownFalse").checked = true;
+    return true;
   }
 }
