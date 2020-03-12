@@ -29,27 +29,27 @@
       <label for="length">Word Length</label>
     </div>
 
-    <div id="form-box-single form-radio-box">
-      <p class="note">
-        Do you know where a specific letter is in the word?
-      </p>
-      <input
-        type="radio"
-        name="known"
-        value="True"
-        onchange="getKnownLetters(this)"
-        onblur="getKnownLetters(this)"
-        id="lettersKnownTrue"
-      /><label for="lettersKnownTrue">Yes</label>
-      <input
-        type="radio"
-        name="known"
-        value="False"
-        onchange="getKnownLetters(this)"
-        onblur="getKnownLetters(this)"
-        id="lettersKnownFalse"
-        checked
-      /><label for="lettersKnownFalse">No</label>
+    <div id="form-box-single">
+      Do you know where a specific letter is in the word?
+      <div class="form-radio-box">
+        <input
+          type="radio"
+          name="known"
+          value="True"
+          onchange="getKnownLetters(this)"
+          onblur="getKnownLetters(this)"
+          id="lettersKnownTrue"
+        /><label for="lettersKnownTrue">Yes </label>
+        <input
+          type="radio"
+          name="known"
+          value="False"
+          onchange="getKnownLetters(this)"
+          onblur="getKnownLetters(this)"
+          id="lettersKnownFalse"
+          checked
+        /><label for="lettersKnownFalse">No</label>
+      </div>
     </div>
 
     <div class="form-box-single">

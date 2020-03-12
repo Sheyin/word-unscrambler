@@ -1,8 +1,7 @@
 {% extends "template.html" %} {% block content %}
-<h2>{{totalCount}} total combinations found for {{letters}}:</h2>
-<p id="note">
-  These have been categorized from most likely to least likely words.
-</p>
+
+<h2>You searched for "{{ letters }}":</h2>
+
 <a href="index.html"
   ><button type="button" class="btn btn-primary">Search again</button></a
 >
@@ -20,7 +19,7 @@
           aria-expanded="true"
           aria-controls="collapseZero"
         >
-          Definite results ({{confirmedCount}})
+          Definite words ({{confirmedCount}})
         </button>
       </h2>
     </div>
@@ -31,10 +30,10 @@
       data-parent="#accordionResults"
     >
       <div class="card-body">
-        <p class="note">
+        <div class="note">
           These are confirmed words that have been found in a dictionary - but
           might not be all the possible words.
-        </p>
+        </div>
         <div class="results">
           {%- for word in confirmedResults %} {{word}} {%- endfor %}
         </div>
@@ -54,7 +53,7 @@
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          Potential Results ({{postfixCount}})
+          Potential results ({{postfixCount}})
         </button>
       </h2>
     </div>
@@ -77,11 +76,11 @@
 
         <div class="card-body">
           {% if postfixResults %}
-          <p class="note">
+          <div class="note">
             These are the most likely results, based on some filtering rules,
             but a lot of nonsense words will be here as well. If there is no
             dictionary match, a word is most likely to be found here.
-          </p>
+          </div>
 
           <div class="results">
             {%- for word in postfixResults %} {{word}} {%- endfor %}
@@ -109,7 +108,7 @@
             aria-expanded="false"
             aria-controls="collapseTwo"
           >
-            Unlikely Results ({{ nonPostfixCount + oddLetterCount +
+            Unlikely results ({{ nonPostfixCount + oddLetterCount +
             lackingVowelCount }})
           </button>
         </h2>
@@ -122,27 +121,27 @@
       >
         <div class="card-body">
           {% if nonPostfixResults %}
-          <p class="note">
+          <div class="note">
             These are unlikely because the word ends strangely.
             ({{nonPostfixCount}})
-          </p>
+          </div>
           <div class="results">
             {%- for word in nonPostfixResults %} {{word}} {%- endfor %}
           </div>
           {% endif %} {% if oddLetterResults %}
-          <p class="note">
+          <div class="note unlikely-space">
             These are unlikely because they start with odd letter combinations.
             ({{oddLetterCount}})
-          </p>
+          </div>
 
-          <div class="postfixResults">
+          <div class="results">
             {%- for word in oddLetterResults %} {{word}} {%- endfor %}
           </div>
           {% endif %} {% if lackingVowelResults %}
-          <p class="note">
+          <div class="note unlikely-space">
             These are unlikely to be words because they do not have a vowel in
             the first half of the word. ({{lackingVowelCount}})
-          </p>
+          </div>
           <div class="results">
             {%- for word in lackingVowelResults %} {{word}} {%- endfor %}
           </div>
