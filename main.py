@@ -44,6 +44,12 @@ def search():
           " known: " + str(known) + " knownLetters: " + str(knownLetters))
     postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(
         letters, numSpaces, known, knownLetters)
+
+    postfixResults.sort()
+    nonPostfixResults.sort()
+    oddLetterResults.sort()
+    lackingVowelResults.sort()
+
     totalCount = len(postfixResults) + len(nonPostfixResults) + \
         len(oddLetterResults) + len(lackingVowelResults)
 
