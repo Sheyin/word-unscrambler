@@ -40,10 +40,6 @@ function populateNumbers() {
   const lengthNode = document.getElementById("length");
   lengthNode.value = length;
   resetPartial();
-
-  if (length > 0) {
-    document.getElementById("error-no-letters").innerHTML = "";
-  }
 }
 
 // packageAndSubmit(): Called when the user presses "Unscramble" and submits
@@ -106,6 +102,7 @@ function resetPartial() {
   document.getElementById("lettersKnownTrue").checked = false;
   document.getElementById("knownLetterEntry").innerHTML = "";
   document.getElementById("knownLettersBox").value = "";
+  document.getElementById("error-no-letters").innerHTML = "";
 }
 
 // checkLength(): A helper function for resetPartial().
