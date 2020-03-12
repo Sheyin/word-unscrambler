@@ -40,6 +40,10 @@ function populateNumbers() {
   const lengthNode = document.getElementById("length");
   lengthNode.value = length;
   resetPartial();
+
+  if (length > 0) {
+    document.getElementById("error-no-letters").innerHTML = "";
+  }
 }
 
 // packageAndSubmit(): Called when the user presses "Unscramble" and submits
