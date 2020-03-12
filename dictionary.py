@@ -25,6 +25,7 @@ def lookup(words):
                 (_,) = x
                 found_words.append(_)
 
+    found_words.sort()
     return found_words
 
 

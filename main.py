@@ -39,6 +39,11 @@ def search():
     postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(
         letters, numSpaces, known, knownLetters)
 
+    postfixResults.sort()
+    nonPostfixResults.sort()
+    oddLetterResults.sort()
+    lackingVowelResults.sort()
+
     # See if anything in the postfix results matches a word in the database.
     # This might be buggy as it does not always have plurals, slang, etc.
     # Also, lag.  I hope the server forgives me.
