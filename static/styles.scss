@@ -1,43 +1,34 @@
-$charcoalGrey: #232834;
-$lightGrey: #cbccc6;
-$darkGrey: #424957;
-$offWhite: #f7f7f7;
-$lightBlue: #41b2e2;
-$mediumBlue: #3192e2;
-$navyBlue: #5f6f8f;
-$Lavender: #8174ba;
-$lighterLavender: #8074ba;
-$whitishLavender: #d6d1ee;
-$pinkishLavender: #d99aed;
-
 div.knownLetterEntry {
   text-indent: 20px;
-  color: $lightGrey;
+  color: #cbccc6;
 }
 
 body {
-  background-color: $navyBlue;
-  color: $lightGrey;
+  background-color: #5f6f8f;
+  color: #cbccc6;
   font-family: sans-serif;
   margin-top: 0px;
   padding-top: 5px;
 }
 
 a:link {
-  color: $lightBlue;
+  color: #41b2e2;
 }
+
 a:visited {
-  color: $mediumBlue;
+  color: #3192e2;
 }
+
 a:hover {
-  color: $Lavender;
+  color: #8174ba;
 }
+
 a:active {
-  color: $pinkishLavender;
+  color: #d99aed;
 }
 
 h2 {
-  color: $lightGrey;
+  color: #cbccc6;
   font-weight: bold;
 }
 
@@ -51,14 +42,14 @@ h2 {
 
 #length {
   font-size: 3.5em;
-  width: 8rem;
+  width: 50%;
   border-radius: 7px;
   text-align: center;
   padding: 0;
 }
 
 .knownLetterEntry {
-  width: 3rem;
+  width: 50%;
   font-size: 1em;
   text-align: center;
   border-radius: 7px;
@@ -66,18 +57,21 @@ h2 {
 }
 
 #whatisthis {
-  color: $lightBlue;
+  color: #41b2e2;
 }
 
 header {
-  color: $lightGrey;
+  color: #cbccc6;
   font-size: 3em;
   text-align: center;
   font-family: "Cabin Sketch";
+  text-shadow: 3px 3px darkslategrey;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .note {
-  color: $darkGrey;
+  color: #424957;
   font-size: 85%;
 }
 
@@ -98,8 +92,8 @@ header {
   border-radius: 0.25rem;
   padding: 1ch;
   font-size: 1.3em;
-  background-color: $offWhite;
-  color: $darkGrey;
+  background-color: #f7f7f7;
+  color: #424957;
 }
 
 .form-box-single {
@@ -117,49 +111,33 @@ header {
   margin-top: auto;
   margin-bottom: 0px;
   max-width: 40%;
-  label {
-    margin-right: 15px;
-  }
 }
 
-// Formatting the results on each card
+#form-radio-box label {
+  margin-right: 15px;
+}
+
 .results {
-  color: $darkGrey;
+  color: #424957;
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767px) {
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-}
-
-// Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   body {
     padding-left: 20%;
     padding-right: 20%;
   }
 }
-
-// Changing the color of placeholder text
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $lightGrey;
-  //opacity: 1; /* Firefox */
+  color: #cbccc6;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: $lightGrey;
+  color: #cbccc6;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: $lightGrey;
+  color: #cbccc6;
 }

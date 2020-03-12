@@ -16,43 +16,40 @@
       <label for="letters">Letters to Unscramble</label>
     </div>
 
-    <!-- Second box - numbers + radio input side by side -->
-    <div class="form-box-split">
-      <div id="length-box">
-        <input
-          type="number"
-          name="length"
-          maxlength="1"
-          onchange="resetPartial()"
-          onblur="resetPartial()"
-          id="length"
-          required="required"
-        /><br />
-        <label for="length">Word Length</label>
-      </div>
+    <div class="form-box-single length-box">
+      <input
+        type="number"
+        name="length"
+        maxlength="1"
+        onchange="resetPartial()"
+        onblur="resetPartial()"
+        id="length"
+        required="required"
+      /><br />
+      <label for="length">Word Length</label>
+    </div>
 
-      <div id="form-radio-box">
-        <p class="note">
-          Do you know where a specific letter is in the word?
-        </p>
-        <input
-          type="radio"
-          name="known"
-          value="True"
-          onchange="getKnownLetters(this)"
-          onblur="getKnownLetters(this)"
-          id="lettersKnownTrue"
-        /><label for="lettersKnownTrue">Yes</label>
-        <input
-          type="radio"
-          name="known"
-          value="False"
-          onchange="getKnownLetters(this)"
-          onblur="getKnownLetters(this)"
-          id="lettersKnownFalse"
-          checked
-        /><label for="lettersKnownFalse">No</label>
-      </div>
+    <div id="form-box-single form-radio-box">
+      <p class="note">
+        Do you know where a specific letter is in the word?
+      </p>
+      <input
+        type="radio"
+        name="known"
+        value="True"
+        onchange="getKnownLetters(this)"
+        onblur="getKnownLetters(this)"
+        id="lettersKnownTrue"
+      /><label for="lettersKnownTrue">Yes</label>
+      <input
+        type="radio"
+        name="known"
+        value="False"
+        onchange="getKnownLetters(this)"
+        onblur="getKnownLetters(this)"
+        id="lettersKnownFalse"
+        checked
+      /><label for="lettersKnownFalse">No</label>
     </div>
 
     <div class="form-box-single">
