@@ -8,6 +8,41 @@
 >
 
 <div class="accordion" id="accordionResults">
+  {% if confirmedResults %}
+  <div class="card">
+    <div class="card-header" id="headingZero">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseZero"
+          aria-expanded="false"
+          aria-controls="collapseZero"
+        >
+          Definite results ({{confirmedCount}})
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseZero"
+      class="collapse"
+      aria-labelledby="headingZero"
+      data-parent="#accordionResults"
+    >
+      <div class="card-body">
+        <p class="note">
+          These are confirmed words that have been found in a dictionary - but
+          might not be all the possible words.
+        </p>
+        <div class="results notranslate">
+          {%- for word in confirmedResults %} {{word}} {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">

@@ -2,16 +2,10 @@
 # Source: https://github.com/Sheyin/word-unscrambler
 
 from functions import invalidInput, formatInput, generateCombinations
-import word
-import secret
-from copy import copy
+import dictionary
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = secret.uri
-db = SQLAlchemy(app)
 
 
 @app.route('/', methods=['GET'])
@@ -44,9 +38,15 @@ def search():
           " known: " + str(known) + " knownLetters: " + str(knownLetters))
     postfixResults, nonPostfixResults, oddLetterResults, lackingVowelResults = generateCombinations(
         letters, numSpaces, known, knownLetters)
+
+    # See if anything in the postfix results matches a word in the database.
+    # This might be buggy as it does not always have plurals, slang, etc.
+    # Also, lag.  I hope the server forgives me.
+    confirmed_words = dictionary.lookup(postfixResults)
+
     totalCount = len(postfixResults) + len(nonPostfixResults) + \
         len(oddLetterResults) + len(lackingVowelResults)
 
     return render_template('results.html', title="Results for '" + ''.join(letters) + "'", letters=''.join(letters), totalCount=totalCount, postfixResults=postfixResults, postfixCount=len(postfixResults),
                            nonPostfixResults=nonPostfixResults, nonPostfixCount=len(nonPostfixResults), oddLetterResults=oddLetterResults, oddLetterCount=len(oddLetterResults),
-                           lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults))
+                           lackingVowelResults=lackingVowelResults, lackingVowelCount=len(lackingVowelResults), confirmedResults=confirmed_words, confirmedCount=len(confirmed_words))
