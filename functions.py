@@ -209,7 +209,7 @@ def invalidInput(lettersInput, numSpacesInput, knownInput, knownLettersInput):
 					return True, "Error: It was indicated that there were known letters, but no letters/positions were given."
 				# Check if each of the known letters is in the letters given
 				for _ in knownLettersInput:
-					if _ is not '_' and _.lower() not in lettersInput.lower():
+					if _ != '_' and _.lower() not in lettersInput.lower():
 						return True, "Error: Known letter '" + _ + "' is not in the pool of letters given."
 				# There should technically be a case here for "if letters were given but knownInput is false" but making it so the letters are disregarded.
 	elif knownInput not in ['True', 'False', '']:

@@ -12,7 +12,7 @@ function getKnownLetters(lettersAreKnownOption) {
     return;
   }
 
-  if (known == "True") {
+  if (known === "True") {
     let letterBlanks = "";
     for (let i = 0; i < length; i++) {
       let idName = "letter" + i;
