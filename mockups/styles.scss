@@ -1,0 +1,113 @@
+body {
+	background-color: #d9fffc;
+	color: #3a4a49;
+	font-family: sans-serif;
+	margin-top: 0px;
+	padding-top: 5px;
+}
+
+h2 {
+	font-weight: bold;
+}
+
+input {
+	font-size: 3.5em;
+	border-radius: 7px;
+	text-align: center;
+	margin: 0px;
+	padding: 0;
+}
+
+#letters {
+	width: 100%;
+}
+
+#length {
+	width: 50%;
+}
+
+.knownLetterEntry {
+	width: 3rem;
+	font-size: 1em;
+}
+
+#error-no-letters {
+	color: #ff0013;
+	font-size: 2rem;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.special-row {
+	height: 2ch;
+}
+
+button {
+	margin-top: 1ch;
+}
+
+header {
+	color: #3a4a49;
+	font-size: 3em;
+	text-align: center;
+	width: 100%;
+	font-family: "Special Elite", cursive;
+	text-shadow: 2px 2px #5292ad;
+}
+
+.center {
+	justify-content: center;
+}
+
+form {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+	padding: 1ch 1ch 1ch 1ch;
+	font-size: 1.2em;
+	background-color: #f7f7f7;
+}
+
+.instructions {
+	margin: 0.5rem;
+}
+
+#mainContent {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+}
+
+.note {
+	font-size: 85%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.results {
+	word-spacing: 1.7rem;
+	display: inline-block;
+}
+
+.unlikely-space {
+	margin-top: 2rem;
+}
+
+@media (min-width: 1200px) {
+	body {
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+
+	input {
+		font-size: 2em;
+		border-radius: 7px;
+		text-align: center;
+		margin: 0px;
+		padding: 0;
+	}
+}
