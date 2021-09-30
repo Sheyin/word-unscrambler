@@ -2,7 +2,8 @@
 # Source: https://github.com/Sheyin/word-unscrambler
 
 from functions import invalidInput, formatInput, generateCombinations
-import dictionary, json
+import dictionary
+import json
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -64,7 +65,7 @@ def search():
 # Expects a json request with the data (if available)
 @app.route('/gamelookup', methods=['GET'])
 def gamelookup():
-    
+
     inputReceived = request.args.get()
     lettersInput = request.args.get('letters', '')
     numSpacesInput = request.args.get('length', '')
@@ -82,7 +83,7 @@ def gamelookup():
         # Response should contain the error, logic in page template will determine what is shown
         response = {"error": True, "reason": invalidReason}
         return json.dumps(result)
-        #return render_template('error.html', title="Error!", reason=invalidReason)
+        # return render_template('error.html', title="Error!", reason=invalidReason)
 
     # Only do these after input has been checked
     letters, numSpaces, known, knownLetters = formatInput(
@@ -103,17 +104,17 @@ def gamelookup():
     # Also, lag.  I hope the server forgives me.
     confirmed_words = dictionary.lookup(postfixResults)
 
-    #totalCount = len(postfixResults) + len(nonPostfixResults) + \
+    # totalCount = len(postfixResults) + len(nonPostfixResults) + \
     # len(oddLetterResults) + len(lackingVowelResults)
 
     result = {
-            "error": False,
-            "reason": "",
-            "postfixResults": postfixResults,
-            "nonPostfixResults": nonPostfixResults,
-            "oddLetterResults": oddLetterResults,
-            "lackingVowelResults": lackingVowelResults,
-            "confirmedResults": confirmed_words,
+        "error": False,
+        "reason": "",
+        "postfixResults": postfixResults,
+        "nonPostfixResults": nonPostfixResults,
+        "oddLetterResults": oddLetterResults,
+        "lackingVowelResults": lackingVowelResults,
+        "confirmedResults": confirmed_words,
     }
 
     return json.dumps(result)

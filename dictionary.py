@@ -29,6 +29,7 @@ def lookup(words):
     return found_words
 
 
+# Test code
 if __name__ == "__main__":
     search_words = ["bird", "apple", "potato", "sdfsdf", "aaahld", "123"]
     results = lookup(search_words)

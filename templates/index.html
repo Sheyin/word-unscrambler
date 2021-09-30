@@ -1,83 +1,66 @@
 {% extends "template.html" %} {% block content %}
 
-<div id="form">
-  <form action="/search" method="get" id="inputForm">
-    <div class="form-box-single">
-      <input
-        type="text"
-        name="letters"
-        maxlength="9"
-        id="letters"
-        required="required"
-        onchange="populateNumbers()"
-        onblur="populateNumbers()"
-      /><br />
-      <label for="letters">Letters to Unscramble</label>
-    </div>
+<form action="/search" method="get" id="inputForm">
+          <input
+            type="text"
+            name="letters"
+            maxlength="9"
+            id="letters"
+            required="required"
+            onchange="populateNumbers()"
+            onblur="populateNumbers()"
+            /><br />
+            <label for="letters">Letters to Unscramble</label>
+        
+          <input
+            type="number"
+            name="length"
+            maxlength="1"
+            onchange="resetPartial()"
+            onblur="resetPartial()"
+            id="length"
+            required="required"
+          /><br />
+          <label for="length">Word Length</label>
 
-    <div class="form-box-single length-box">
-      <input
-        type="number"
-        name="length"
-        maxlength="1"
-        onchange="resetPartial()"
-        onblur="resetPartial()"
-        id="length"
-        required="required"
-      /><br />
-      <label for="length">Word Length</label>
-    </div>
+        
 
-    <div id="form-box-single">
-      Do you know where a specific letter is in the word?
-      <div class="form-radio-box">
-        <input
-          type="radio"
-          name="known"
-          value="True"
-          onchange="getKnownLetters(this)"
-          onblur="getKnownLetters(this)"
-          id="lettersKnownTrue"
-        /><label for="lettersKnownTrue">Yes </label>
-        <input
-          type="radio"
-          name="known"
-          value="False"
-          onchange="getKnownLetters(this)"
-          onblur="getKnownLetters(this)"
-          id="lettersKnownFalse"
-          checked
-        /><label for="lettersKnownFalse">No</label>
-      </div>
-    </div>
+          Do you know where a specific letter is in the word?
+          <div class="form-radio-box">
+            <input
+              type="radio"
+              name="known"
+              value="True"
+              onchange="getKnownLetters(this)"
+              onblur="getKnownLetters(this)"
+              id="lettersKnownTrue"
+            /><label for="lettersKnownTrue">Yes </label>
+            <input
+              type="radio"
+              name="known"
+              value="False"
+              onchange="getKnownLetters(this)"
+              onblur="getKnownLetters(this)"
+              id="lettersKnownFalse"
+              checked
+            /><label for="lettersKnownFalse">No</label>
+          </div>
 
-    <div class="form-box-single">
-      <span id="error-no-letters"></span>
-      <input
-        type="hidden"
-        name="knownLetters"
-        default=""
-        id="knownLettersBox"
-      />
-      <div id="knownLetterEntry"></div>
-    </div>
+          <!-- this is used to store the final result to send with the form -->
+          <input
+            type="hidden"
+            name="knownLetters"
+            default=""
+            id="knownLettersBox"
+          />
 
-    <div class="buttons form-box-single">
-      <button type="submit" class="btn btn-primary btn-lg" onclick="packageAndSubmit()" id="submit"
-      >
-        Unscramble
-      </button>
-      <button type="button" class="btn btn-secondary btn-lg" onclick="resetForm()" id="reset"
-      >
-        Clear Form
-      </button>
-    </div>
-  </form>
-</div>
-
-<div class="instructions">
-  <h2>Instructions</h2>
-  This is a tool to try to find words given a pool of letters. Fill out the form
-  above (alphabetic characters only) and submit to see your results.
-</div>
+          <div id="knownLetterEntry" class="special-row"></div>
+          
+          <div id="error-no-letters" class="special-row"></div>
+      
+          <div class="buttons form-box-single">
+            <button type="submit" class="btn btn-primary btn-lg" onclick="packageAndSubmit()" id="submit">Unscramble</button>
+            <button type="button" class="btn btn-secondary btn-lg" onclick="resetForm()" id="reset">Clear Form</button>
+          </div>
+    </form>
 {% endblock %}
